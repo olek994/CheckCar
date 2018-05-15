@@ -1,0 +1,12 @@
+# Based on: https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+
+# User-specific stuff:
+.idea/
+
+## Project files:
+*.iml
+*.iws
+
+# IntelliJ out
+/out/
+**/target/
