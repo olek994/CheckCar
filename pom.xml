@@ -15,7 +15,15 @@
     </parent>
     <modules>
         <module>checkcar-engine</module>
+        <module>checkcar-domain</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
 
 </project>
