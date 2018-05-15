@@ -5,7 +5,7 @@
 
 	<groupId>pl.edu.wat.checkcar</groupId>
 	<artifactId>checkcar-engine</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>${project.parent.version}</version>
 	<packaging>jar</packaging>
 
 	<name>checkcar-engine</name>
@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>pl.edu.wat.checkcar</groupId>
 			<artifactId>checkcar-domain</artifactId>
-			<version>${project.version}</version>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

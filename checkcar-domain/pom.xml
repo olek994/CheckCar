@@ -11,6 +11,7 @@
 
     <artifactId>checkcar-domain</artifactId>
     <packaging>pom</packaging>
+    <version>${project.parent.version}</version>
     <properties>
         <jpa.api>1.0.0.Final</jpa.api>
     </properties>
