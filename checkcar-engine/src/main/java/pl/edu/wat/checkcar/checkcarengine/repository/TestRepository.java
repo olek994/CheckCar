@@ -10,5 +10,6 @@ import pl.edu.wat.checkcar.checkcardomain.entity.TestEntity;
 @RepositoryRestResource(collectionResourceRel = "test",path = "test")
 public interface TestRepository extends JpaRepository<TestEntity,Long> {
 
+    TestEntity getById(Long id);
 
 }

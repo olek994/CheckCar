@@ -1,6 +1,7 @@
 package pl.edu.wat.checkcar.checkcardomain.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import pl.edu.wat.checkcar.checkcardomain.base.BaseEntity;
@@ -22,6 +23,7 @@ import javax.persistence.Table;
 @Table(name="T_TEST_ENTITY")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @SequenceGenerator(name = "sTestEntity",
                     sequenceName = "SEQ_TEST_ENTITY",
                     initialValue = 1000,

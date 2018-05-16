@@ -11,7 +11,7 @@ import pl.edu.wat.checkcar.checkcardomain.entity.TestEntity;
  * Copyright by Wojskowa Akademia Techniczna im. Jarosława Dąbrowskiego, Warszawa 2018
  */
 @Component
-public class testMapper implements MapperConfig {
+public class TestMapper implements MapperConfig {
     @Override
     public void configure(MapperFactory factory) {
         factory.classMap(TestEntity.class, TestDto.class).byDefault().register();

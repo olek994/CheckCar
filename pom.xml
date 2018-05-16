@@ -16,6 +16,7 @@
     <modules>
         <module>checkcar-engine</module>
         <module>checkcar-domain</module>
+        <module>checkcar-web</module>
     </modules>
 
     <dependencies>
