@@ -15,7 +15,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 		"pl.edu.wat.checkcar.checkcarengine.repository",
 		"pl.edu.wat.checkcar.checkcarengine.service",})
 @SpringBootApplication
-@EnableAsync
 public class CheckcarEngineApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {

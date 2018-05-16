@@ -1,7 +1,7 @@
 package pl.edu.wat.checkcar.checkcardomain.entity.listener;
 
 import org.springframework.stereotype.Component;
-import pl.edu.wat.checkcar.checkcardomain.entity.base.BaseEntity;
+import pl.edu.wat.checkcar.checkcardomain.base.BaseEntity;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;

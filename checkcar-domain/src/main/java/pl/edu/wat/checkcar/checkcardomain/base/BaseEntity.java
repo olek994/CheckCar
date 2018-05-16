@@ -1,4 +1,4 @@
-package pl.edu.wat.checkcar.checkcardomain.entity.base;
+package pl.edu.wat.checkcar.checkcardomain.base;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
