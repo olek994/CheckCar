@@ -31,6 +31,22 @@
             <version>1.4.2</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.ggeorgovassilis</groupId>
+            <artifactId>spring-rest-invoker</artifactId>
+            <version>1.5</version>
+        </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>spring-rest-invoker-mvn-repo</id>
+            <url>https://raw.github.com/ggeorgovassilis/spring-rest-invoker/mvn-pages/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
 
 </project>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="pl" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>TestPage</title>
 </head>
 <body>
-Hello World! Test Page
+    <h1>Hello World! Test Page <p th:text="${testString}"></p> </h1>
 </body>
 </html>
