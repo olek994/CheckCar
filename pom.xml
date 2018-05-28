@@ -17,6 +17,7 @@
         <module>checkcar-engine</module>
         <module>checkcar-domain</module>
         <module>checkcar-web</module>
+        <module>checkcar-sso</module>
     </modules>
 
     <dependencies>

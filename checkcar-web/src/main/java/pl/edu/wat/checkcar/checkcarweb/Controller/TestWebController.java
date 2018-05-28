@@ -23,11 +23,11 @@ public class TestWebController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String getTestPage(Model model){
-        TestDto testDto = testRest.getTest(1L);
-
-        if (testDto != null) {
-            model.addAttribute("testString",testDto.getTestString());
-        }
+//        TestDto testDto = testRest.getTest(1L);
+//
+//        if (testDto != null) {
+//            model.addAttribute("testString",testDto.getTestString());
+//        }
 
         return "helloWorld";
     }
