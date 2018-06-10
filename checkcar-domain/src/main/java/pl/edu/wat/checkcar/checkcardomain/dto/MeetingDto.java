@@ -33,4 +33,6 @@ public class MeetingDto extends BaseDto<Long> {
         this.meetingDate = meetingDate;
         this.cost = cost;
     }
+
+
 }
