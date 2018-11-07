@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CheckCar</title>
-</head>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{main.html}">
+
+
 <body>
-hello
+<div th:fragment="part" layout:fragment="mainPartContent">
+    <div class="container-fluid">
+        <h5>HELLO</h5>
+        <h3 th:text="${string}"></h3>
+    </div>
+</div>
 </body>
 </html>
