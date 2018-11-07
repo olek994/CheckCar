@@ -5,12 +5,9 @@ import groovy.lang.Singleton;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.edu.wat.checkcar.checkcardomain.entity.CarType;
-import pl.edu.wat.checkcar.checkcardomain.entity.Meeting;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarTypeRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.MeetingRest;
-import pl.edu.wat.checkcar.checkcardomain.rest.TestRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.UserRest;
 
 
@@ -30,11 +27,6 @@ public class BeanFactory {
         factory.setBaseUrl(engineBaseUrl);
         factory.setRemoteServiceInterfaceClass(clazz);
         return factory;
-    }
-
-    @Bean(name = "TestRest")
-    public SpringRestInvokerProxyFactoryBean testRestClient(){
-        return getRestInvoker(TestRest.class);
     }
 
     @Bean(name = "UserRest")
