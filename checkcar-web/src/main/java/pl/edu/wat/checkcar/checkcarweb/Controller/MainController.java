@@ -20,6 +20,14 @@ public class MainController extends BaseController {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String getMainPage(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part){
 
+        model.addAttribute("string","JAKIS TEKST");
         return geTemplatePath("dashboard",part);
+    }
+
+    @RequestMapping(value = "/carSearch",method = RequestMethod.GET)
+    public String getCarSearchView(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part){
+
+        model.addAttribute("string","Car SEARCH");
+        return geTemplatePath("carSearch",part);
     }
 }

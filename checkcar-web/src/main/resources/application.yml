@@ -19,3 +19,6 @@ security:
 spring:
   thymeleaf:
     cache: false
+    prefix: file:src/main/resources/templates/
+  resources:
+    static-locations: file:src/main/resources/static/
