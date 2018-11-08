@@ -8,8 +8,54 @@
 <body>
 <div th:fragment="part" layout:fragment="mainPartContent">
     <div class="container-fluid">
-        <h3 th:text="${string}"></h3>
+        <div class="row">
+            <div class="col-12">
+                <h3>Wyszukaj właściciela</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <div class="form-group">
+                    <select id="search-car-model" class="form-control">
+                        <option hidden="hidden" class="search-car-default-value">Marka auta</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="form-group">
+                    <select id="search-car-type" class="form-control">
+                        <option hidden="hidden" class="search-car-default-value">Model auta</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <button id="search-car-button" class="btn btn-primary">Wyszukaj</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <!--tabela wyszukania-->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="show-search-info" style="display: none">
+                    <div class="alert alert-danger" role="alert">
+                        <strong>Błąd!</strong> Nie wybrałeś wszystkich kryteriów wyszukiwania
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script th:inline="javascript">
+            $('#search-car-button').on('click',function () {
+                //something to do
+
+                $('.show-search-info').show('fast');
+            })
+    </script>
 </div>
 </body>
 </html>
