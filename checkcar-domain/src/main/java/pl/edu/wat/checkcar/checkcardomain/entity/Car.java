@@ -48,5 +48,5 @@ public class Car extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "ownerId")
-    User ownerId;
+    Person ownerId;
 }

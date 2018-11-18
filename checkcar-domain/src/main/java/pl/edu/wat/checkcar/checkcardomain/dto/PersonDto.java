@@ -21,12 +21,17 @@ public class PersonDto extends BaseDto<Long> {
     private String name;
     private String surname;
     private Date birthday;
+    private String userName;
+    private String password;
+    private String email;
 
-
-    public PersonDto(Long id, String name, String surname, Date birthday) {
+    public PersonDto(Long id, String name, String surname, Date birthday, String userName, String password, String email) {
         super(id);
         this.name = name;
         this.surname = surname;
         this.birthday = birthday;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
     }
 }

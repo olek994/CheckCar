@@ -36,10 +36,10 @@ public class Meeting extends BaseEntity {
     Car carId;
 
     @JoinColumn(name = "ownerId")
-    User ownerId;
+    Person ownerId;
 
     @JoinColumn(name = "interestedId")
-    User interestedId;
+    Person interestedId;
 
     @Column
     Date meetingDate;

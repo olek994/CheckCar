@@ -7,7 +7,7 @@ import pl.edu.wat.checkcar.checkcardomain.dto.CarDto;
 import pl.edu.wat.checkcar.checkcardomain.entity.Car;
 import pl.edu.wat.checkcar.checkcarengine.repository.CarRepository;
 import pl.edu.wat.checkcar.checkcarengine.repository.CarTypeRepository;
-import pl.edu.wat.checkcar.checkcarengine.repository.UserRepository;
+import pl.edu.wat.checkcar.checkcarengine.repository.PersonRepository;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
     CarTypeRepository carTypeRepository;
 
     @Autowired
-    UserRepository userRepository;
+    PersonRepository userRepository;
 
     public CarDto createCar(CarDto carDto){
         return convert(repo.save(convertToEntity(carDto,null)));

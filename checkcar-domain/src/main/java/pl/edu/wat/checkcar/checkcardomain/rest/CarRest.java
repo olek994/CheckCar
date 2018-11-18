@@ -20,7 +20,7 @@ public interface CarRest {
     @RequestMapping(value = "car/{carId}",method = RequestMethod.GET)
     CarDto getCar(@PathVariable("carId") Long carId);
 
-    @RequestMapping(value = "/car/owner/{ownerid}",method = RequestMethod.GET)
+    @RequestMapping(value = "/car/owner/{ownerId}",method = RequestMethod.GET)
     List<CarDto> getCarOfOwner(@PathVariable("ownerId") Long ownerId);
 
     @RequestMapping(value = "/car/{carId}",method = RequestMethod.PUT)
