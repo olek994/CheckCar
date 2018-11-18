@@ -33,6 +33,10 @@ public class PersonProvider extends BaseCrudProvider<Person, PersonDto> {
         repo.delete(personId);
     }
 
+    public PersonDto getPersonByUserName(String userName){
+        return convert(repo.findByUserName(userName));
+    }
+
     @Override
     protected Person convertToEntity(PersonDto dto, Person entity) {
         if (entity == null) {

@@ -10,5 +10,5 @@ import pl.edu.wat.checkcar.checkcardomain.entity.Person;
  */
 @RepositoryRestResource(collectionResourceRel = "person",path = "person")
 public interface PersonRepository extends JpaRepository<Person,Long> {
-
+    Person findByUserName(String userName);
 }

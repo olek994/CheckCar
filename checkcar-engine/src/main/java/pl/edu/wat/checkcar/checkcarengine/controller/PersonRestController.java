@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.edu.wat.checkcar.checkcardomain.dto.PersonDto;
 import pl.edu.wat.checkcar.checkcardomain.rest.PersonRest;
-import pl.edu.wat.checkcar.checkcardomain.rest.PersonRest;
 import pl.edu.wat.checkcar.checkcarengine.service.PersonService;
 
 /**
@@ -37,5 +36,10 @@ public class PersonRestController implements PersonRest {
     @Override
     public void deletePerson(@PathVariable("personId") Long personId) {
         personService.deletePerson(personId);
+    }
+
+    @Override
+    public PersonDto getPersonByUserName(@PathVariable("userName") String userName) {
+        return personService.getPersonByUserName(userName);
     }
 }

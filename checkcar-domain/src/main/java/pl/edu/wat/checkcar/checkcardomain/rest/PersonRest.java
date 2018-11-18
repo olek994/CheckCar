@@ -23,4 +23,7 @@ public interface PersonRest {
 
     @RequestMapping(value = "/person/{personId}",method = RequestMethod.DELETE)
     void deletePerson(@PathVariable("personId") Long personId);
+
+    @RequestMapping(value = "/person/userName/{userName}", method = RequestMethod.GET)
+    PersonDto getPersonByUserName(@PathVariable("userName") String userName);
 }

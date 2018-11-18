@@ -30,6 +30,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public PersonDto getPersonByUserName(String userName) {
+        return provider.getPersonByUserName(userName);
+    }
+
+    @Override
     public void updatePerson(Long personId, PersonDto personDto) {
         provider.updatePerson(personId,personDto);
     }

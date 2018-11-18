@@ -27,6 +27,9 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
     @Autowired
     PersonRepository userRepository;
 
+    @Autowired
+    PersonRepository personRepository;
+
     public CarDto createCar(CarDto carDto){
         return convert(repo.save(convertToEntity(carDto,null)));
     }
@@ -36,7 +39,7 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
     }
 
     public List<CarDto> getCarOfOwner(Long ownerId){
-        return convert(repo.findAllByOwnerId(ownerId));
+        return convert(repo.findAllByOwnerId(personRepository.findOne(ownerId)));
     }
 
     public void updateCar(Long carId, CarDto carDto){

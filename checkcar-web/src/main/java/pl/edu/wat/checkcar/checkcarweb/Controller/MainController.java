@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarDto;
+import pl.edu.wat.checkcar.checkcardomain.dto.PersonDto;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarRest;
 import pl.edu.wat.checkcar.checkcarweb.BaseController;
 
@@ -45,8 +46,7 @@ public class MainController extends BaseController {
 
     @RequestMapping(value = "/myAccount",method = RequestMethod.GET)
     public String getMyAccountView(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part){
-//        List<CarDto> cars = carRest.getCarOfOwner(1L);
-        
+        List<CarDto> cars = carRest.getCarOfOwner(getLoggedInPerson().getId());
         return geTemplatePath("myAccount",part);
     }
 }

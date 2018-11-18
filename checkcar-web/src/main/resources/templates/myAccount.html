@@ -15,7 +15,9 @@
         </div>
         <div class="row" th:if='${cars == null}'>
             <div class="col-12">
-                <p>hello</p>
+                    <div class="alert alert-info" role="alert">
+                        <strong>Ups!</strong> Nie posiadasz samochodu
+                    </div>
             </div>
         </div>
 
