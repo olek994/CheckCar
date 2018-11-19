@@ -2,53 +2,42 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <title>CheckCar - Zaloguj się</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
-<body >
-    <div class="container-fluid">
-        <div class="row mx-auto">
-            <div class="col-4" style="background-color: red;">
-                <form th:action="@{/login/signIn}" method="post">
-                    <div class="row">
-                        <div class="col-12">
-                            <h3>CheckCar - Zaloguj się</h3>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <span ><i class="fa fa-user" aria-hidden="true"></i> Login</span>
-                        <input type="text" name="username" placeholder="Login" th:class="form-control"/>
-                    </div>
 
-                    <div class="form-group">
-                        <span><i class="fa fa-key" aria-hidden="true"></i> Hasło</span>
-                        <input type="password" name="password" placeholder="Hasło" class="form-control"/>
-                    </div>
-
-                    <div>
-                        <div>
-                            <button type="submit" class="btn btn-lg btn-primary form-control">
-                                <i class="fa fa-sign-in" aria-hidden="true"></i> Zaloguj
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="">
-                        <a th:href="@{/login/signUp}" class="txt2">Zarejestruj sie</a>
-                    </div>
-                </form>
+<body id="LoginForm">
+<div class="container">
+    <div class="login-form">
+        <div class="main-div">
+            <div class="panel">
+                <h2>Zaloguj</h2>
+                <p>Wprowadź swój login oraz hasło</p>
             </div>
+            <form id="Login" th:action="@{/login/signIn}" method="post">
+
+                <div class="form-group">
+                    <input type="name" name="username" class="form-control" id="name" placeholder="Email Address">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+
+                <button type="submit" class="btn btn-primary margin-bottom-20">Zaloguj</button>
+                <button class="btn btn-outline-primary" th:href="@{/login/signUp}">Rejestracja</button>
+            </form>
         </div>
     </div>
+</div>
 
-    <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/1.14.1/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
-    <script th:src="@{/js/main.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+
 </body>
 </html>
