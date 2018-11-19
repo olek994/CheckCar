@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarDto;
+import pl.edu.wat.checkcar.checkcardomain.rest.CarRest;
 import pl.edu.wat.checkcar.checkcarengine.service.CarService;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  * Copyright by Wojskowa Akademia Techniczna im. Jarosława Dąbrowskiego, Warszawa 2018
  */
 @RestController
-public class CarRestController implements CarService {
+public class CarRestController implements CarRest {
 
     @Autowired
     CarService carService;
@@ -30,7 +31,7 @@ public class CarRestController implements CarService {
     }
 
     @Override
-    public List<CarDto> getCarOfOwner(@PathVariable("carId")Long ownerId) {
+    public List<CarDto> getCarOfOwner(@PathVariable("ownerId")Long ownerId) {
         return carService.getCarOfOwner(ownerId);
     }
 

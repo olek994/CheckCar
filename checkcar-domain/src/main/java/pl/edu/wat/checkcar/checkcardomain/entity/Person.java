@@ -32,7 +32,7 @@ import java.util.Date;
         sequenceName = "SEQ_Person",
         initialValue = 1000,
         allocationSize = 1)
-public abstract class Person extends BaseEntity {
+public class Person extends BaseEntity {
 
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "sPerson")
     @Id
@@ -43,6 +43,15 @@ public abstract class Person extends BaseEntity {
 
     @Column
     String surname;
+
+    @Column
+    String userName;
+
+    @Column(nullable = false,unique = true)
+    String password;
+
+    @Column(nullable = false, unique = true)
+    String email;
 
     @Column
     Date birthday;

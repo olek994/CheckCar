@@ -7,7 +7,7 @@ import pl.edu.wat.checkcar.checkcardomain.dto.MeetingDto;
 import pl.edu.wat.checkcar.checkcardomain.entity.Meeting;
 import pl.edu.wat.checkcar.checkcarengine.repository.CarRepository;
 import pl.edu.wat.checkcar.checkcarengine.repository.MeetingRepository;
-import pl.edu.wat.checkcar.checkcarengine.repository.UserRepository;
+import pl.edu.wat.checkcar.checkcarengine.repository.PersonRepository;
 
 /**
  * Created by Aleksander Małkowicz, Date: 25.05.2018
@@ -23,7 +23,7 @@ public class MeetingProvider extends BaseCrudProvider<Meeting,MeetingDto> {
     CarRepository carRepository;
 
     @Autowired
-    UserRepository userRepository;
+    PersonRepository userRepository;
 
     public MeetingDto createMeeting(MeetingDto meetingDto){
         return convert(repo.save(convertToEntity(meetingDto,null)));
