@@ -26,13 +26,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.requestMatchers()
-                .antMatchers("/login", "/oauth/authorize","/oauth/token")
+                .antMatchers("/login/signIn", "/login/signUp/**", "/oauth/authorize", "/oauth/token")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login/singUp/**").permitAll()
+                .antMatchers("/login/signUp/**").permitAll()
                 .anyRequest().authenticated()
-                .and()//dodanie loginPage("/login/signIn")
-                .formLogin().permitAll();
+                .and()
+                .formLogin()
+                .loginPage("/login/signIn")
+                .permitAll();
     }
 
     @Override
