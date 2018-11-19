@@ -60,13 +60,17 @@
 }
 .checkCar-navigation{
     font-size: 2em;
-    border-radius: 5px;
-    background: rgba(14, 135, 125, 0.56);
+    background-image: url("back.jpg");
 }
 #main-content{
     border-radius: 5px;
     background: rgb(247, 255, 241);
 }
+img {
+
+    width: 64px;
+}
+
 body{
     background: rgba(237, 230, 229, 0.62);
 }
