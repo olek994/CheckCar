@@ -16,10 +16,10 @@ public class BaseController {
     @Autowired
     PersonRest personRest;
 
-    protected String geTemplatePath(String templatePath,String part){
-        return geTemplatePath(templatePath, Boolean.parseBoolean(part));
+    protected String getTemplatePath(String templatePath,String part){
+        return getTemplatePath(templatePath, Boolean.parseBoolean(part));
     }
-    protected String geTemplatePath(String templatePath,boolean part){
+    protected String getTemplatePath(String templatePath,boolean part){
         return templatePath + (part ? "::part":"");
     }
 
