@@ -34,19 +34,25 @@ public class MainController extends BaseController {
     public String getMainPage(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part){
 
         model.addAttribute("string","JAKIS TEKST");
-        return geTemplatePath("dashboard",part);
+        return getTemplatePath("dashboard",part);
     }
 
     @RequestMapping(value = "/carSearch",method = RequestMethod.GET)
     public String getCarSearchView(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part){
 
         model.addAttribute("string","Car SEARCH");
-        return geTemplatePath("carSearch",part);
+        return getTemplatePath("carSearch",part);
     }
 
     @RequestMapping(value = "/myAccount",method = RequestMethod.GET)
     public String getMyAccountView(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part){
         List<CarDto> cars = carRest.getCarOfOwner(getLoggedInPerson().getId());
-        return geTemplatePath("myAccount",part);
+        return getTemplatePath("myAccount",part);
     }
+
+    @RequestMapping(value = "/addCar",method = RequestMethod.GET)
+    public String getAddCarView(Model model,  @RequestParam(name = "part", required = false, defaultValue = "false") String part){
+        return getTemplatePath("addCar",part);
+    }
+
 }

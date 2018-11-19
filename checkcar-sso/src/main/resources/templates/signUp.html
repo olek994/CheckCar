@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
+    <link th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/main.css}"/>
 </head>
@@ -21,7 +21,7 @@
 
                     <div class="form-group">
                         <span >Name</span>
-                        <input class="input100" type="text" name="name"/>
+                        <input  type="text" name="name"/>
                     </div>
 
                     <div class="form-group">
@@ -36,12 +36,12 @@
 
                     <div class="form-group">
                         <span >Username</span>
-                        <input class="input100" type="text" name="username"/>
+                        <input type="text" name="username"/>
                     </div>
 
                     <div class="form-group">
                         <span >Password</span>
-                        <input class="input100" type="password" name="password"/>
+                        <input  type="password" name="password"/>
                     </div>
 
                     <div class="form-group">
@@ -49,10 +49,8 @@
                         <input type="password" name="password_r"/>
                     </div>
 
-                    <div class="container-login100-form-btn p-t-40">
-                        <button type="submit" class="btn btn-lg btn-primary">
-                            Sign up
-                        </button>
+                    <div>
+                        <button type="submit" class="btn btn-lg btn-primary">Zarejestruj</button>
                     </div>
                 </form>
             </div>
@@ -60,11 +58,13 @@
 </div>
 
 <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/1.14.1/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/jquery-easing/1.3/jquery.easing.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9/umd/popper.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
 <script th:src="@{/js/main.js}"></script>
 
 <script type="text/javascript" th:inline="javascript">
+
     $('.validate-form').on('submit', signUp);
     function signUp(e) {
         e.preventDefault();
@@ -72,12 +72,9 @@
             method: 'POST',
             url: '/auth/login/signUp/process',
             contentType: 'application/json',
-            beforeSend: function(request) {
-                request.setRequestHeader(headerName, token);
-            },
             data: JSON.stringify({
                 name: $('.validate-form').find('input[name="name"]').val(),
-                last_name: $('.validate-form').find('input[name="last_name"]').val(),
+                surname: $('.validate-form').find('input[name="last_name"]').val(),
                 email: $('.validate-form').find('input[name="email"]').val(),
                 username: $('.validate-form').find('input[name="username"]').val(),
                 password: $('.validate-form').find('input[name="password"]').val(),
