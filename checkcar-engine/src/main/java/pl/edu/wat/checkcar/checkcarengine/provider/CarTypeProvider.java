@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.edu.wat.checkcar.checkcardomain.base.BaseCrudProvider;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarTypeDto;
+import pl.edu.wat.checkcar.checkcardomain.entity.CarModel;
 import pl.edu.wat.checkcar.checkcardomain.entity.CarType;
+import pl.edu.wat.checkcar.checkcarengine.repository.CarModelRepository;
 import pl.edu.wat.checkcar.checkcarengine.repository.CarTypeRepository;
+
+import java.util.List;
 
 /**
  * Created by Aleksander Małkowicz, Date: 25.05.2018
@@ -16,6 +20,9 @@ public class CarTypeProvider extends BaseCrudProvider<CarType,CarTypeDto> {
 
     @Autowired
     CarTypeRepository repo;
+
+    @Autowired
+    CarModelRepository carModelRepository;
 
     public CarTypeDto createCarType(CarTypeDto carTypeDto){
         return convert(repo.save(convertToEntity(carTypeDto,null)));
@@ -33,6 +40,10 @@ public class CarTypeProvider extends BaseCrudProvider<CarType,CarTypeDto> {
         repo.delete(cartypeId);
     }
 
+    public List<CarTypeDto> getAllTypesByModel(Long carModelId){
+        return convert(repo.findAllByCarModelId(carModelId));
+    }
+
     @Override
     protected CarType convertToEntity(CarTypeDto dto, CarType entity) {
         if (entity == null) {
@@ -41,6 +52,10 @@ public class CarTypeProvider extends BaseCrudProvider<CarType,CarTypeDto> {
         if(dto.getType() != null){
             entity.setType(dto.getType());
         }
+        if(dto.getModel() != null){
+            entity.setCarModelId(dto.getModel());
+        }
+
         return entity;
     }
 }

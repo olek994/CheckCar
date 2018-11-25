@@ -37,11 +37,14 @@ public class Car extends BaseEntity {
     @Id
     Long id;
 
-    @JoinColumn(name = "carTypeId")
-    CarType carTypeId;
+    @Column
+    Long carTypeId;
 
     @Column
-    Date yearOfProduction;
+    Long carModelId;
+
+    @Column
+    Long yearOfProduction;
 
     @Column
     Long course;

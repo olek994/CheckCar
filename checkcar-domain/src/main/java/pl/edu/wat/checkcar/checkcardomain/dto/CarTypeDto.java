@@ -17,10 +17,12 @@ import pl.edu.wat.checkcar.checkcardomain.base.BaseDto;
 @AllArgsConstructor
 public class CarTypeDto extends BaseDto<Long> {
         private String type;
+        private Long model;
 
         @Builder
-        public CarTypeDto(Long id, String type) {
+        public CarTypeDto(Long id, String type, Long model) {
                 super(id);
                 this.type = type;
+                this.model = model;
         }
 }

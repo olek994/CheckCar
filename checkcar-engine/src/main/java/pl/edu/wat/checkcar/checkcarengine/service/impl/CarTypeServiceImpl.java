@@ -7,6 +7,8 @@ import pl.edu.wat.checkcar.checkcardomain.dto.CarTypeDto;
 import pl.edu.wat.checkcar.checkcarengine.provider.CarTypeProvider;
 import pl.edu.wat.checkcar.checkcarengine.service.CarTypeService;
 
+import java.util.List;
+
 /**
  * Created by Aleksander Małkowicz, Date: 25.05.2018
  * Copyright by Wojskowa Akademia Techniczna im. Jarosława Dąbrowskiego, Warszawa 2018
@@ -36,5 +38,10 @@ public class CarTypeServiceImpl implements CarTypeService {
     @Override
     public void deleteCarType(Long cartypeId) {
         carTypeProvider.deleteCarType(cartypeId);
+    }
+
+    @Override
+    public List<CarTypeDto> getAllTypesByModelId(Long carModelId) {
+        return carTypeProvider.getAllTypesByModel(carModelId);
     }
 }

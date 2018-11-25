@@ -15,7 +15,6 @@ public class CarMapper implements MapperConfig {
     @Override
     public void configure(MapperFactory factory) {
         factory.classMap(Car.class, CarDto.class)
-                .field("carTypeId.id","carTypeId")
                 .field("ownerId.id","ownerId")
                 .byDefault().register();
     }

@@ -5,6 +5,7 @@ import groovy.lang.Singleton;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import pl.edu.wat.checkcar.checkcardomain.rest.CarModelRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarTypeRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.MeetingRest;
@@ -42,6 +43,12 @@ public class BeanFactory {
     @Bean(name = "CarTypeRest")
     public SpringRestInvokerProxyFactoryBean carTypeRestClient(){
         return getRestInvoker(CarTypeRest.class);
+    }
+
+
+    @Bean(name = "CarModelRest")
+    public SpringRestInvokerProxyFactoryBean carModelRestClient(){
+        return getRestInvoker(CarModelRest.class);
     }
 
     @Bean(name = "MeetingRest")

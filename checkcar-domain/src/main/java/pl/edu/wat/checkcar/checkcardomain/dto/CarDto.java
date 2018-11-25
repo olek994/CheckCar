@@ -21,16 +21,18 @@ import java.util.Date;
 public class CarDto extends BaseDto<Long> {
 
     private Long carTypeId;
-    private Date yearOfProduction;
+    private Long yearOfProduction;
     private Long course;
     private Long ownerId;
+    private Long carModelId;
 
     @Builder
-    public CarDto(Long id, Long carTypeId, Date yearOfProduction, Long course, Long ownerId) {
+    public CarDto(Long id, Long carTypeId, Long yearOfProduction, Long course, Long ownerId, Long carModelId) {
         super(id);
         this.carTypeId = carTypeId;
         this.yearOfProduction = yearOfProduction;
         this.course = course;
         this.ownerId = ownerId;
+        this.carModelId = carModelId;
     }
 }

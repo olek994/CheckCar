@@ -15,7 +15,7 @@ import java.util.List;
 public interface CarRest {
 
     @RequestMapping(value = "/car/",method = RequestMethod.POST)
-    CarDto createCar(CarDto carDto);
+    CarDto createCar(@RequestBody CarDto carDto);
 
     @RequestMapping(value = "car/{carId}",method = RequestMethod.GET)
     CarDto getCar(@PathVariable("carId") Long carId);

@@ -14,12 +14,21 @@
             </div>
         </div>
         <div class="row" th:if='${cars == null}'>
-            <div class="col-4 mx-auto text-center">
+            <div class="col-6 mx-auto text-center">
                     <div class="alert alert-info" role="alert">
                         <strong>Ups!</strong> Nie posiadasz samochodu
                     </div>
             </div>
         </div>
+
+        <div class="row" th:if="${cars != null}">
+            <div class="col-12">
+                <div th:each="car: ${cars}">
+                    <p th:text="'Marka: '+${car.model}+' Model: '+${car.type}+' Przebieg: '+${car.course}+'km Rok produkcji: '+${car.productionYear}+'r.'"></p>
+                </div>
+            </div>
+        </div>
+
         <div class="row padding-bottom-20">
             <div class="col-4 mx-auto text-center">
                 <button id="goToAddCarViewButton" class=" form-control btn btn-lg btn-outline-primary">Dodaj samochód</button>

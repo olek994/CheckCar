@@ -8,17 +8,136 @@
 <body>
 <div th:fragment="part" layout:fragment="mainPartContent">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row margin-bottom-20">
             <div class="col-12">
                 <h3>Dodaj samochód</h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-12">TUTAJ DODAWNIE AUTA</div>
+            <div class="col-5">
+                <div class="form-group">
+                    <select class="form-control form-control-lg" id="car_model_select_box">
+                        <option hidden selected>Marka</option>
+                        <option th:each="carModel: ${carModels}" th:value="${carModel.id}" th:text="${carModel.model}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-5">
+                <div class="form-group">
+                    <select class="form-control form-control-lg" id="car_type_select_box">
+                        <option hidden selected>Model</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="carCourse" placeholder="Przebieg [km]">
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-5">
+                <div class="form-group">
+                    <input id="productionYearDatePicker" class="form-control form-control-lg" placeholder="Rok produkcji">
+                </div>
+
+            </div>
         </div>
 
-    </div>
+        <div class="row padding-bottom-20">
+            <div class="col-6 mx-auto text-center">
+                <button id="addCarButton" class="btn btn-lg btn-outline-primary form-control">Dodaj</button>
+            </div>
+        </div>
 
+        <div class="row padding-bottom-20" id="addingErrorAlertRow" style="display: none">
+            <div class="col-12">
+                <div class="alert alert-danger" role="alert">
+                    <strong>Ups!</strong> Wypełnij wszystkie pola.
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+
+        $("#addCarButton").on("click",function (e) {
+            e.preventDefault();
+            let model = $("#car_model_select_box").val();
+            let type = $("#car_type_select_box").val();
+            let course = $("#carCourse").val();
+            let productionYear = $("#productionYearDatePicker").val();
+
+
+            if(model !== "Model" && type !== "Marka" && course !== "" && productionYear !== ""){
+                $("#addingErrorAlertRow").hide('fast');
+
+                let data = {};
+
+                data['modelId'] = model;
+                data['typeId'] = type;
+                data['course'] = course;
+                data['productionYear'] = productionYear;
+
+                $.ajax({
+                    method: 'POST',
+                    url: '/car/add/',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (e) {
+                        console.log("OK");
+                    },
+                    error: function (e) {
+                        console.log("error");
+                    }
+                });
+
+            }else{
+                $("#addingErrorAlertRow").show('fast');
+            }
+
+        });
+
+        $("#productionYearDatePicker").datepicker({
+            uiLibrary: 'bootstrap4',
+            autoclose: true,
+            format: "yyyy",
+            language: "pl",
+            viewMode: "years",
+            minViewMode: "years",
+            endDate: "2018d"
+
+        });
+
+        $('#car_model_select_box').on('change',function () {
+            let carModelId = $(this).val();
+
+            $.ajax({
+                method: 'GET',
+                url: '/carType/'+carModelId,
+                contentType: 'application/json',
+
+                success: function (data) {
+                    console.dir(data);
+                    $("#car_type_select_box").children("option:not(:first)").remove();
+
+                    $.each(data, function (idx,itm) {
+                        $("#car_type_select_box")
+                            .append($("<option></option>")
+                            .attr("value",itm.id)
+                            .text(itm.type));
+                    })
+
+                },
+                error: function (r) {
+                    console.log("error");
+                }
+            });
+
+        })
+    </script>
 </div>
 </body>
 </html>

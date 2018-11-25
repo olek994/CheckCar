@@ -57,7 +57,7 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
             entity = new Car();
         }
         if(dto.getCarTypeId() != null){
-            entity.setCarTypeId(carTypeRepository.getOne(dto.getCarTypeId()));
+            entity.setCarTypeId(dto.getCarTypeId());
         }
 
         if(dto.getCourse() != null){
@@ -70,6 +70,10 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
 
         if (dto.getYearOfProduction() != null) {
             entity.setYearOfProduction(dto.getYearOfProduction());
+        }
+
+        if(dto.getCarModelId() != null){
+            entity.setCarModelId(dto.getCarModelId());
         }
 
         return entity;

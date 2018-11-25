@@ -7,21 +7,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarTypeDto;
 import pl.edu.wat.checkcar.checkcardomain.entity.CarType;
 
+import java.util.List;
+
 /**
  * Created by Aleksander Małkowicz, Date: 25.05.2018
  * Copyright by Wojskowa Akademia Techniczna im. Jarosława Dąbrowskiego, Warszawa 2018
  */
 public interface CarTypeRest {
 
-    @RequestMapping(value = "/cartype/",method = RequestMethod.POST)
+    @RequestMapping(value = "/carType/",method = RequestMethod.POST)
     CarTypeDto createCarType(@RequestBody CarTypeDto carTypeDto);
 
-    @RequestMapping(value = "/cartype/{cartypeId}",method = RequestMethod.GET)
-    CarTypeDto getCarType(@PathVariable("cartypeId") Long cartypeId);
+    @RequestMapping(value = "/carType/{carTypeId}",method = RequestMethod.GET)
+    CarTypeDto getCarType(@PathVariable("carTypeId") Long cartypeId);
 
-    @RequestMapping(value = "/cartype/{cartypeId}",method = RequestMethod.PUT)
-    void updateCarType(@PathVariable("cartypeId") Long cartypeId,@RequestBody CarTypeDto carTypeDto);
+    @RequestMapping(value = "/carType/{carTypeId}",method = RequestMethod.PUT)
+    void updateCarType(@PathVariable("carTypeId") Long cartypeId,@RequestBody CarTypeDto carTypeDto);
 
-    @RequestMapping(value = "/cartype/{cartypeId}",method = RequestMethod.DELETE)
-    void deleteCarType(@PathVariable("cartypeId") Long cartypeId);
+    @RequestMapping(value = "/carType/{carTypeId}",method = RequestMethod.DELETE)
+    void deleteCarType(@PathVariable("carTypeId") Long cartypeId);
+
+    @RequestMapping(value = "/carType/all/{carModelId}",method = RequestMethod.GET)
+    List<CarTypeDto> getAllTypesByModelId(@PathVariable("carModelId") Long carModelId);
 }

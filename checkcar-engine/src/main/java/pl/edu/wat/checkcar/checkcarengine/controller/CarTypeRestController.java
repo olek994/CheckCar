@@ -8,6 +8,8 @@ import pl.edu.wat.checkcar.checkcardomain.dto.CarTypeDto;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarTypeRest;
 import pl.edu.wat.checkcar.checkcarengine.service.CarTypeService;
 
+import java.util.List;
+
 /**
  * Created by Aleksander Małkowicz, Date: 25.05.2018
  * Copyright by Wojskowa Akademia Techniczna im. Jarosława Dąbrowskiego, Warszawa 2018
@@ -24,17 +26,23 @@ public class CarTypeRestController implements CarTypeRest {
     }
 
     @Override
-    public CarTypeDto getCarType(@PathVariable("cartypeId") Long cartypeId) {
+    public CarTypeDto getCarType(@PathVariable("carTypeId") Long cartypeId) {
         return carTypeService.getCarType(cartypeId);
     }
 
     @Override
-    public void updateCarType(@PathVariable("cartypeId") Long cartypeId,@RequestBody CarTypeDto carTypeDto) {
+    public void updateCarType(@PathVariable("carTypeId") Long cartypeId,@RequestBody CarTypeDto carTypeDto) {
         carTypeService.updateCarType(cartypeId,carTypeDto);
     }
 
     @Override
-    public void deleteCarType(@PathVariable("cartypeId") Long cartypeId) {
+    public void deleteCarType(@PathVariable("carTypeId") Long cartypeId) {
         carTypeService.deleteCarType(cartypeId);
+    }
+
+    @Override
+    public List<CarTypeDto> getAllTypesByModelId(@PathVariable("carModelId") Long carModelId) {
+
+        return carTypeService.getAllTypesByModelId(carModelId);
     }
 }
