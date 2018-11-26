@@ -3,55 +3,47 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>CheckCar - Zarejestruj się</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/registry.css}"/>
 </head>
-<body>
 
-<div class="height_100_vh">
-        <div class="row">
-            <div class="col-4">
-                <form class="validate-form" method="post">
-                        <span>CheckCar</span>
-
+<body id="RegistryForm">
+<div class="container">
+    <div class="login-form">
+        <div class="main-div">
+            <div class="panel">
+                <h2>Rejestracja</h2>
+                <p>Wprowadź dane aby się utworzyć konto</p>
+            </div>
+            <form class="validate-form" method="post">
                     <div class="form-group">
-                        <span >Name</span>
-                        <input  type="text" name="name"/>
-                    </div>
-
-                    <div class="form-group">
-                        <span >Last Name</span>
-                        <input type="text" name="last_name"/>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Imię">
                     </div>
 
                     <div class="form-group">
-                        <span >E-mail</span>
-                        <input type="text" name="email"/>
+                        <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Nazwisko">
                     </div>
 
                     <div class="form-group">
-                        <span >Username</span>
-                        <input type="text" name="username"/>
+                        <input type="text" name="email" class="form-control" id="email" placeholder="E-mail">
                     </div>
 
                     <div class="form-group">
-                        <span >Password</span>
-                        <input  type="password" name="password"/>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="Login">
                     </div>
 
                     <div class="form-group">
-                        <span>Repeat Password</span>
-                        <input type="password" name="password_r"/>
+                        <input type="text" name="password" class="form-control" id="password" placeholder="Hasło">
                     </div>
 
-                    <div>
-                        <button type="submit" class="btn btn-lg btn-primary">Zarejestruj</button>
+                    <div class="form-group">
+                        <input type="text" name="password_r" class="form-control" id="password_r" placeholder="Powtórz hasło">
                     </div>
+
+                    <button type="submit" class="btn btn-lg btn-primary">Utwórz konto</button>
                 </form>
             </div>
         </div>
@@ -90,6 +82,5 @@
         });
     }
 </script>
-
 </body>
 </html>

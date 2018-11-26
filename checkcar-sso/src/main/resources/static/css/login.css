@@ -1,11 +1,12 @@
 body#LoginForm{
-    background-image: url("back.jpg");
+    background-image: url("back3.jpg");
     background-repeat:no-repeat;
     background-position:center;
     background-size:cover;
     height: 100vh;
     weight: 100vw;
     padding:10px;
+    overflow: hidden;
 }
 
 .form-heading { color:#fff; font-size:23px;}
@@ -49,8 +50,8 @@ body#LoginForm{
     text-decoration: underline;
 }
 .login-form  .btn.btn-primary {
-    background: #ff704d none repeat scroll 0 0;
-    border-color: #ff704d;
+    background: #1a6aac none repeat scroll 0 0;
+    border-color: #1a6aac;
     color: #ffffff;
     font-size: 14px;
     width: 100%;
@@ -67,18 +68,18 @@ body#LoginForm{
     margin: auto;
 }
 .login-form .btn.btn-primary.reset {
-    background: #ff704d none repeat scroll 0 0;
+    background: #1a6aac none repeat scroll 0 0;
 }
 .back { text-align: left; margin-top:10px;}
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
 
 .margin-bottom-20{
-    margin-bottom: 20px!important;
+    margin-bottom: 15px!important;
 }
 
 .login-form  .btn.btn-outline-primary {
-    background: #ff704d none repeat scroll 0 0;
-    border-color: #ff704d;
+    background: #1a6aac none repeat scroll 0 0;
+    border-color: #1a6aac;
     color: #ffffff;
     font-size: 14px;
     width: 100%;
