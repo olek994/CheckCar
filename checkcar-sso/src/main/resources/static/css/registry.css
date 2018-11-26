@@ -24,6 +24,13 @@ body#RegistryForm{
     line-height:24px;
 }
 
+.panel p2 {
+    color:#777777;
+    font-size:20px;
+    line-height:24px;
+    cursor: pointer;
+}
+
 .login-form .form-control {
     background: #f7f7f7 none repeat scroll 0 0;
     border: 1px solid #d4d4d4;
@@ -37,8 +44,8 @@ body#RegistryForm{
     border-radius: 8px;
     margin: 25vh auto 30vh;
     max-width: 38%;
-    padding: 50px 70px 70px 71px;
-    margin-top: 15vh;
+    padding: 50px 70px 45px 71px;
+    margin-top: 12vh;
 }
 
 .login-form .form-group {
@@ -59,6 +66,8 @@ body#RegistryForm{
     height: 50px;
     line-height: 50px;
     padding: 0;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 .forgot {
     text-align: left; margin-bottom:30px;

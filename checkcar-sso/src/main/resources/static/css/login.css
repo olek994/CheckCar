@@ -37,7 +37,7 @@ body#LoginForm{
     border-radius: 8px;
     margin: 25vh auto 30vh;
     max-width: 38%;
-    padding: 50px 70px 70px 71px;
+    padding: 50px 70px 50px 71px;
 }
 
 .login-form .form-group {
@@ -58,6 +58,7 @@ body#LoginForm{
     height: 50px;
     line-height: 50px;
     padding: 0;
+    margin-top: 20px;
 }
 .forgot {
     text-align: left; margin-bottom:30px;
