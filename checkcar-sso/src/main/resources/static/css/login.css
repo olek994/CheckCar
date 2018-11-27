@@ -9,7 +9,11 @@ body#LoginForm{
     overflow: hidden;
 }
 
-.form-heading { color:#fff; font-size:23px;}
+.form-heading {
+    color:#000000;
+    font-size:23px;
+    position: center;
+}
 
 .panel h2{
     color:#444444;
@@ -37,7 +41,7 @@ body#LoginForm{
     border-radius: 8px;
     margin: 25vh auto 30vh;
     max-width: 38%;
-    padding: 50px 70px 50px 71px;
+    padding: 30px 70px 50px 71px;
 }
 
 .login-form .form-group {

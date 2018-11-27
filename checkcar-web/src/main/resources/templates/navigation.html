@@ -1,17 +1,19 @@
 <div xmlns:th="http://www.thymeleaf.org">
     <div th:remove="tag" th:fragment="navigation">
-        <nav class="navbar navbar-expand-lg  navbar-dark bg-secondary fixed-top padding-top-10 padding-bottom-10 checkCar-navigation" style="font-size: 1.2em;">
-            <a class="navbar-brand text-uppercase nav-link" href="$" th:attr="data-url=${'/'}" style="font-size: 1.2em; font-family: 'Comic Sans MS', cursive, sans-serif;"><i class="fa fa-car" aria-hidden="true"></i> CheckCar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <a class="navbar-brand" href="#"><img class="nav-img" src="assets/nav3.png"></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" id="carSearchLink" th:attr="data-url=${'/carSearch'}" href="#">Znajdź samochód</a>
+                        <a class="nav-link" id="carSearchLink" th:attr="data-url=${'/carSearch'}" href="#">Wyszukaj samochód</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="myAccountLink" th:attr="data-url=${'/myAccount'}" href="#">Moje konto</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mt-2 mt-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link fa fa-sign-out" id="logout" href="#">     Wyloguj</a>
                     </li>
                 </ul>
             </div>
@@ -25,5 +27,3 @@
         </script>
     </div>
 </div>
-<!--<a class="navbar-brand text-uppercase" href="/" style="font-size: 1.2em; font-family: 'Comic Sans MS', cursive, sans-serif;"><i class="fa fa-car" aria-hidden="true"></i> CheckCar</a>
-<i class="fa fa-car" aria-hidden="true">-->
