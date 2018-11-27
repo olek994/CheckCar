@@ -76,6 +76,10 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
             entity.setCarModelId(dto.getCarModelId());
         }
 
+        if(dto.getCarImage() != null){
+            entity.setCarImage(dto.getCarImage());
+        }
+
         return entity;
     }
 }

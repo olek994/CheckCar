@@ -49,6 +49,9 @@ public class Car extends BaseEntity {
     @Column
     Long course;
 
+    @Column(length = 1024)
+    byte[] carImage;
+
     @ManyToOne
     @JoinColumn(name = "ownerId")
     Person ownerId;

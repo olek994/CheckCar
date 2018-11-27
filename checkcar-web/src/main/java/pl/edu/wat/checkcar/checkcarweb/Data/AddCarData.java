@@ -16,5 +16,6 @@ public class AddCarData {
     private String typeId;
     private String course;
     private String productionYear;
+    private String carImage;
 
 }

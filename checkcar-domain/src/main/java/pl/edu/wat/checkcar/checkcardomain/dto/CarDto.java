@@ -25,14 +25,16 @@ public class CarDto extends BaseDto<Long> {
     private Long course;
     private Long ownerId;
     private Long carModelId;
+    private byte[] carImage;
 
     @Builder
-    public CarDto(Long id, Long carTypeId, Long yearOfProduction, Long course, Long ownerId, Long carModelId) {
+    public CarDto(Long id, Long carTypeId, Long yearOfProduction, Long course, Long ownerId, Long carModelId,byte[] carImage) {
         super(id);
         this.carTypeId = carTypeId;
         this.yearOfProduction = yearOfProduction;
         this.course = course;
         this.ownerId = ownerId;
         this.carModelId = carModelId;
+        this.carImage = carImage;
     }
 }

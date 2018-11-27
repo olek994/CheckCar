@@ -17,4 +17,5 @@ public class CarData {
     private String type;
     private Long course;
     private Long productionYear;
+    private String carImage;
 }

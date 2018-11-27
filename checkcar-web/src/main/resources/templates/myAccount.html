@@ -7,6 +7,7 @@
 
 <body>
 <div th:fragment="part" layout:fragment="mainPartContent">
+    <link th:href="@{/css/myAccount.css}" rel="stylesheet"/>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
@@ -23,8 +24,15 @@
 
         <div class="row" th:if="${cars != null}">
             <div class="col-12">
-                <div th:each="car: ${cars}">
-                    <p th:text="'Marka: '+${car.model}+' Model: '+${car.type}+' Przebieg: '+${car.course}+'km Rok produkcji: '+${car.productionYear}+'r.'"></p>
+                <div th:each="car: ${cars}" class="card carCard bg-light mb-3 margin-bottom-20">
+                    <img class="card-img-top" th:src="${car.carImage}" alt="carImage" height="180px" width="auto" >
+                    <div class="card-body">
+                        <h3 class="card-title" th:text="${car.model}+' '+${car.type}"></h3>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Przebieg: <span class="font-weight-bold" th:text="${car.course}"></span>km</li>
+                        <li class="list-group-item">Rok produkcji: <span class="font-weight-bold" th:text="${car.productionYear}"></span>r.</li>
+                    </ul>
                 </div>
             </div>
         </div>

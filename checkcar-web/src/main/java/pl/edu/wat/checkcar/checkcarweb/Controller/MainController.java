@@ -27,6 +27,7 @@ import pl.edu.wat.checkcar.checkcarweb.Data.CarData;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -85,7 +86,9 @@ public class MainController extends BaseController {
             }else{
                 carData.setType("");
             }
-
+            if(car.getCarImage() != null){
+                carData.setCarImage(new String(car.getCarImage()));
+            }
             newCars.add(carData);
         }
         model.addAttribute("cars",newCars);
@@ -136,6 +139,9 @@ public class MainController extends BaseController {
         carDto.setYearOfProduction(productionYear);
         carDto.setCarModelId(modelId);
 
+        byte[] image = addCarData.getCarImage().getBytes();
+
+        carDto.setCarImage(image);
         CarDto addedCar = carRest.createCar(carDto);
 
         if(addedCar == null){

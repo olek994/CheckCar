@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-5">
                 <div class="form-group">
-                    <select class="form-control form-control-lg" id="car_model_select_box">
+                    <select class="form-control form-control" id="car_model_select_box">
                         <option hidden selected>Marka</option>
                         <option th:each="carModel: ${carModels}" th:value="${carModel.id}" th:text="${carModel.model}"></option>
                     </select>
@@ -25,7 +25,7 @@
             <div class="col-2"></div>
             <div class="col-5">
                 <div class="form-group">
-                    <select class="form-control form-control-lg" id="car_type_select_box">
+                    <select class="form-control form-control" id="car_type_select_box">
                         <option hidden selected>Model</option>
                     </select>
                 </div>
@@ -35,15 +35,26 @@
         <div class="row">
             <div class="col-5">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="carCourse" placeholder="Przebieg [km]">
+                    <input type="text" class="form-control form-control" id="carCourse" placeholder="Przebieg [km]">
                 </div>
             </div>
             <div class="col-2"></div>
             <div class="col-5">
                 <div class="form-group">
-                    <input id="productionYearDatePicker" class="form-control form-control-lg" placeholder="Rok produkcji">
+                    <input id="productionYearDatePicker" class="form-control form-control" placeholder="Rok produkcji">
                 </div>
 
+            </div>
+        </div>
+
+        <div class="row margin-bottom-20">
+            <div class="col-5">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="addCarImage">
+                        <label class="custom-file-label" id="addCarImageURI" for="addCarImage">Dodaj zdjęcie</label>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -60,8 +71,32 @@
                 </div>
             </div>
         </div>
+        <div class="row padding-bottom-20" id="addingCarIncorrectInfo" style="display: none">
+            <div class="col-12">
+                <div class="alert alert-danger" role="alert">
+                    <strong>Ups!</strong> Coś poszło nie tak. Spróbuj ponownie później
+                </div>
+            </div>
+        </div>
+        <div class="row padding-bottom-20" id="addingCarSuccessfulInfo" style="display: none">
+            <div class="col-12">
+                <div class="alert alert-success" role="alert">
+                    <strong>Hura!</strong> Dodano samochód
+                </div>
+            </div>
+        </div>
+
     </div>
     <script th:inline="javascript">
+
+        let reader = new FileReader();
+
+        $("#addCarImage").on('change',function () {
+            $("#addCarImageURI").text($(this).val());
+            reader.onload = function(event) {
+                console.log(event.target.result);
+            };
+        });
 
         $("#addCarButton").on("click",function (e) {
             e.preventDefault();
@@ -69,30 +104,36 @@
             let type = $("#car_type_select_box").val();
             let course = $("#carCourse").val();
             let productionYear = $("#productionYearDatePicker").val();
+            let file = $("#addCarImage")[0].files[0];
 
 
-            if(model !== "Model" && type !== "Marka" && course !== "" && productionYear !== ""){
+            if(model !== "Model" && type !== "Marka" && course !== "" && productionYear !== "" && file !== undefined){
                 $("#addingErrorAlertRow").hide('fast');
+                $('#addingCarIncorrectInfo').hide('fast');
+                $('#addingCarSuccessfulInfo').hide('fast');
+                reader.onloadend = function(event) {
+                    let data = {};
+                    data['modelId'] = model;
+                    data['typeId'] = type;
+                    data['course'] = course;
+                    data['productionYear'] = productionYear;
+                    data['carImage'] = event.target.result;
 
-                let data = {};
+                    $.ajax({
+                        method: 'POST',
+                        url: '/car/add/',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function (e) {
+                            $('#addingCarSuccessfulInfo').show('fast');
+                        },
+                        error: function (e) {
+                            $('#addingCarIncorrectInfo').show('fast');
+                        }
+                    });
 
-                data['modelId'] = model;
-                data['typeId'] = type;
-                data['course'] = course;
-                data['productionYear'] = productionYear;
-
-                $.ajax({
-                    method: 'POST',
-                    url: '/car/add/',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    success: function (e) {
-                        console.log("OK");
-                    },
-                    error: function (e) {
-                        console.log("error");
-                    }
-                });
+                };
+                reader.readAsDataURL(file);
 
             }else{
                 $("#addingErrorAlertRow").show('fast');
