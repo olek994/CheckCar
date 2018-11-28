@@ -7,8 +7,8 @@
 
 <body>
 <div th:fragment="part" layout:fragment="mainPartContent">
-    <div class="container-fluid">
-        <div class="row margin-bottom-20">
+    <div class="container-fluid checkCar_card">
+        <div class="row margin-bottom-20 margin-top-20">
             <div class="col-12">
                 <h3>Dodaj samochód</h3>
             </div>
@@ -47,8 +47,42 @@
             </div>
         </div>
 
-        <div class="row margin-bottom-20">
+        <div class="row">
             <div class="col-5">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control" id="carEngine" placeholder="Typ silnika">
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-5">
+                <div class="form-group">
+                    <input id="carHorsePower" class="form-control form-control" placeholder="moc silnika [KM]">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-5">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control" id="carFuel" placeholder="Typ paliwa">
+                </div>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-5">
+                <div class="form-group">
+                    <select class="form-control form-control" id="car_gear_box_select_box">
+                        <option hidden selected>Skrzynia biegów</option>
+                        <option value="MANUAL" >Manualna</option>
+                        <option value="AUTOMATIC">Automatyczna</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row margin-bottom-20">
+            <div class="col-12">
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="addCarImage">
@@ -105,9 +139,13 @@
             let course = $("#carCourse").val();
             let productionYear = $("#productionYearDatePicker").val();
             let file = $("#addCarImage")[0].files[0];
+            let gearBox = $("#car_gear_box_select_box").val();
+            let engine = $("#carEngine").val();
+            let horsePower = $("#carHorsePower").val();
+            let fuel = $("#carFuel").val();
 
-
-            if(model !== "Model" && type !== "Marka" && course !== "" && productionYear !== "" && file !== undefined){
+            if(model !== "Model" && type !== "Marka" && course !== "" && productionYear !== "" && file !== undefined ||
+                gearBox !== "Skrzynia biegów" || engine !== "" || horsePower !== "" || fuel !== ""){
                 $("#addingErrorAlertRow").hide('fast');
                 $('#addingCarIncorrectInfo').hide('fast');
                 $('#addingCarSuccessfulInfo').hide('fast');
@@ -118,6 +156,10 @@
                     data['course'] = course;
                     data['productionYear'] = productionYear;
                     data['carImage'] = event.target.result;
+                    data['engine'] = engine;
+                    data['horsePower'] = horsePower;
+                    data['fuel'] = fuel;
+                    data['gearBox'] = gearBox;
 
                     $.ajax({
                         method: 'POST',

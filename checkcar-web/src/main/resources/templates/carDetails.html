@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{main.html}">
+
+
+<body>
+<div th:fragment="part" layout:fragment="mainPartContent">
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+
+    <div class="container-fluid checkCar_card">
+        <div class="row">
+            <div class="col-12" id="carMainImage" style="height: 300px;">
+                <h2 class="font-weight-bold" th:text="${car.model} +' '+${car.type}"></h2>
+            </div>
+        </div>
+        <div class="carDetails">
+            <div class="row margin-top-20">
+                <div class="col-5">
+                    <h3>Szczegóły samochodu</h3>
+                </div>
+            </div>
+            <div class="row margin-top-20 margin-bottom-20">
+                <div class="col-6">
+                    <p>Rok produkcji: <span class="font-weight-bold" th:text="${car.productionYear}"></span>r.</p>
+                    <p>Typ silnika: <span class="font-weight-bold" th:text="${car.engine}"></span></p>
+                    <p>Moc silnika: <span class="font-weight-bold" th:text="${car.horsePower}"></span>KM</p>
+                </div>
+                <div class="col-6">
+                    <p>Przebieg: <span class="font-weight-bold" th:text="${car.course}"></span>km</p>
+                    <p>Typ paliwa: <span class="font-weight-bold" th:text="${car.fuel}"></span></p>
+                    <p>Skrzynia biegów: <span class="font-weight-bold" th:text="${car.gearBox}"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="ownerDetails">
+
+            <div class="row margin-top-20">
+                <div class="col-5">
+                    <h3>Szczegóły Właściciela</h3>
+                </div>
+            </div>
+            <div class="row margin-top-20 margin-bottom-20">
+                <div class="col-6">
+                    <p>Imię: <span class="font-weight-bold" th:text="${owner.name}"></span></p>
+                    <p>Nazwisko: <span class="font-weight-bold" th:text="${owner.surname}"></span></p>
+                    <p>Telefon: <span class="font-weight-bold" th:text="${owner.email}"></span></p>
+                </div>
+                <div class="col-6">
+                    <p>Login: <span class="font-weight-bold" th:text="${owner.userName}"></span></p>
+                    <p>Email: <span class="font-weight-bold" th:text="${owner.phone}"></span></p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script th:inline="javascript">
+
+        $("#carMainImage").css("background-image","url("+/*[[${car.carImage}]]*/""+")");
+        $("#carMainImage").css("background-repeat","no-repeat");
+        $("#carMainImage").css("background-position","center");
+        $("#carMainImage").css("background-size","cover");
+        $("#carMainImage").css("height","250px");
+        $("#carMainImage").css("width","100%");
+
+    </script>
+</div>
+</body>
+</html>

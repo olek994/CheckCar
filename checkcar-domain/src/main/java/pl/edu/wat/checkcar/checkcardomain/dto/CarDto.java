@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import pl.edu.wat.checkcar.checkcardomain.GearBoxEnum;
 import pl.edu.wat.checkcar.checkcardomain.base.BaseDto;
 import pl.edu.wat.checkcar.checkcardomain.entity.CarType;
 
@@ -26,9 +27,14 @@ public class CarDto extends BaseDto<Long> {
     private Long ownerId;
     private Long carModelId;
     private byte[] carImage;
+    private String engine;
+    private String horsePower;
+    private GearBoxEnum gearBox;
+    private String fuel;
+
 
     @Builder
-    public CarDto(Long id, Long carTypeId, Long yearOfProduction, Long course, Long ownerId, Long carModelId,byte[] carImage) {
+    public CarDto(Long id, Long carTypeId, Long yearOfProduction, Long course, Long ownerId, Long carModelId, byte[] carImage, String engine, String horsePower, GearBoxEnum gearBox, String fuel) {
         super(id);
         this.carTypeId = carTypeId;
         this.yearOfProduction = yearOfProduction;
@@ -36,5 +42,9 @@ public class CarDto extends BaseDto<Long> {
         this.ownerId = ownerId;
         this.carModelId = carModelId;
         this.carImage = carImage;
+        this.engine = engine;
+        this.horsePower = horsePower;
+        this.gearBox = gearBox;
+        this.fuel = fuel;
     }
 }

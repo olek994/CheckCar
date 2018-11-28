@@ -44,4 +44,9 @@ public class CarRestController implements CarRest {
     public void deleteCar(@PathVariable("carId")Long carId) {
         carService.deleteCar(carId);
     }
+
+    @Override
+    public List<CarDto> getCarsByModelIdAndTypeId(@PathVariable("modelId") Long modelId, @PathVariable("typeId") Long typeId) {
+        return carService.getCarsByModelIdAndTypeId(modelId,typeId);
+    }
 }

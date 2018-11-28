@@ -50,6 +50,10 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
         repo.delete(carId);
     }
 
+    public List<CarDto> getCarsByModelIdAndTypeId(Long modelId, Long typeId){
+        return convert(repo.findAllByCarModelIdAndCarTypeId(modelId,typeId));
+    }
+
 
     @Override
     protected Car convertToEntity(CarDto dto, Car entity) {
@@ -78,6 +82,21 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
 
         if(dto.getCarImage() != null){
             entity.setCarImage(dto.getCarImage());
+        }
+
+        if(dto.getEngine() != null){
+            entity.setEngine(dto.getEngine());
+        }
+        if(dto.getFuel() !=  null){
+            entity.setFuel(dto.getFuel());
+        }
+
+        if(dto.getHorsePower() != null){
+            entity.setHorsePower(dto.getHorsePower());
+        }
+
+        if(dto.getGearBox() != null){
+            entity.setGearBox(dto.getGearBox());
         }
 
         return entity;

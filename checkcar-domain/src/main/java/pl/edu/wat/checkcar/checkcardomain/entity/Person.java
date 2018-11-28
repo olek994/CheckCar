@@ -56,5 +56,13 @@ public class Person extends BaseEntity {
     @Column
     Date birthday;
 
+    @Column
+    String phone;
+
+    @Column
+    String city;
+
+    @Column
+    String address;
 
 }

@@ -17,6 +17,9 @@ public class PersonSignUp {
     private String email;
     private String name;
     private String surname;
+    private String phone;
+    private String city;
+    private String address;
     private String username;
     private String password;
     private String password_r;

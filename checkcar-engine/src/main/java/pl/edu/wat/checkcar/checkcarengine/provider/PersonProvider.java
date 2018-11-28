@@ -60,6 +60,15 @@ public class PersonProvider extends BaseCrudProvider<Person, PersonDto> {
         if(dto.getPassword() != null){
             entity.setPassword(dto.getPassword());
         }
+        if(dto.getPhone() != null){
+            entity.setPhone(dto.getPhone());
+        }
+        if(dto.getCity() != null){
+            entity.setCity(dto.getCity());
+        }
+        if(dto.getAddress() != null){
+            entity.setAddress(dto.getAddress());
+        }
 
         return entity;
     }

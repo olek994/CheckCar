@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import pl.edu.wat.checkcar.checkcardomain.GearBoxEnum;
 import pl.edu.wat.checkcar.checkcardomain.base.BaseEntity;
 
 import javax.persistence.Column;
@@ -51,6 +52,18 @@ public class Car extends BaseEntity {
 
     @Column(length = 1024)
     byte[] carImage;
+
+    @Column
+    String engine;
+
+    @Column
+    String horsePower;
+
+    @Column
+    GearBoxEnum gearBox;
+
+    @Column
+    String fuel;
 
     @ManyToOne
     @JoinColumn(name = "ownerId")

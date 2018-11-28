@@ -64,8 +64,11 @@ public class LoginController {
 
         Person person = new Person();
         person.setEmail(personSignUp.getEmail());
-        person.setUserName(personSignUp.getUsername());
+        person.setSurname(personSignUp.getSurname());
         person.setPassword(password);
+        person.setPhone(personSignUp.getPhone());
+        person.setAddress(personSignUp.getAddress());
+        person.setCity(personSignUp.getCity());
         person.setUserName(personSignUp.getUsername());
         person.setName(personSignUp.getName());
 

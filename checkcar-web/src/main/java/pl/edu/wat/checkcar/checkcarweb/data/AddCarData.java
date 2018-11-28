@@ -1,4 +1,4 @@
-package pl.edu.wat.checkcar.checkcarweb.Data;
+package pl.edu.wat.checkcar.checkcarweb.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +17,8 @@ public class AddCarData {
     private String course;
     private String productionYear;
     private String carImage;
-
+    private String engine;
+    private String horsePower;
+    private String fuel;
+    private String gearBox;
 }

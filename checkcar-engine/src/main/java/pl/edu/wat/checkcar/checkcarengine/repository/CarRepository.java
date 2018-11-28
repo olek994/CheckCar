@@ -15,4 +15,5 @@ import java.util.List;
 public interface CarRepository extends JpaRepository<Car,Long> {
 
     List<Car> findAllByOwnerId(Person ownerId);
+    List<Car> findAllByCarModelIdAndCarTypeId(Long carModelId, Long carTypeId);
 }

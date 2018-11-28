@@ -64,7 +64,17 @@
 }
 #main-content{
     border-radius: 5px;
-    background: rgb(247, 255, 241);
+}
+.checkCar_card{
+    background: #a5eadf;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 4px 3px 13px -6px rgba(0,0,0,0.75);
+}
+
+.card_box_shadow{
+    border-radius: 8px;
+    box-shadow: 4px 3px 13px -6px rgba(0,0,0,0.75);
 }
 img {
 
@@ -73,4 +83,27 @@ img {
 
 body{
     background: rgba(237, 230, 229, 0.62);
+}
+.carCard{
+    overflow: hidden;
+}
+#carMainImage {
+    width: 100%;
+    height: 400px!important;
+    text-shadow: 3px 3px 8px #000000;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+#carMainImage h2{
+    position: absolute;
+     left: 10px;
+     bottom: 10px;
+ }
+.card_text_bottom_left{
+    position: absolute;
+    left:10px;
+    bottom:100px;
+    text-shadow: 3px 3px 8px #000000;
+    color: #ffffff;
+    text-transform: uppercase;
 }

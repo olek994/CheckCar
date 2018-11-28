@@ -44,4 +44,9 @@ public class CarServiceImpl implements CarService {
     public void deleteCar(Long carId) {
         carProvider.deleteCar(carId);
     }
+
+    @Override
+    public List<CarDto> getCarsByModelIdAndTypeId(Long modelId, Long typeId) {
+        return carProvider.getCarsByModelIdAndTypeId(modelId,typeId);
+    }
 }

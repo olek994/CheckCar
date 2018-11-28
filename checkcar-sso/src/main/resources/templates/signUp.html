@@ -48,6 +48,18 @@
                     </div>
 
                     <div class="form-group">
+                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Telefon">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="city" class="form-control" id="city" placeholder="Miasto">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="address" class="form-control" id="address" placeholder="Adres">
+                    </div>
+
+                    <div class="form-group">
                         <input type="text" name="email" class="form-control" id="email" placeholder="E-mail">
                     </div>
 
@@ -86,12 +98,15 @@
 
         let name = $('.validate-form').find('input[name="name"]').val();
         let last_name = $('.validate-form').find('input[name="last_name"]').val();
+        let phone = $('.validate-form').find('input[name="phone"]').val();
+        let address = $('.validate-form').find('input[name="address"]').val();
+        let city = $('.validate-form').find('input[name="city"]').val();
         let email = $('.validate-form').find('input[name="email"]').val();
         let username = $('.validate-form').find('input[name="username"]').val();
         let password = $('.validate-form').find('input[name="password"]').val();
         let password_r = $('.validate-form').find('input[name="password_r"]').val();
 
-        if(name === "" || last_name === "" || email === "" || username === "" || password === "" || password_r === "" ){
+        if(name === "" || last_name === "" || email === "" || username === "" || password === "" || password_r === "" || phone === "" || city === "" || address === ""){
             $('#no_all_inputs_field_info').show('fast');
         }else{
             $('#no_all_inputs_field_info').hide('fast');
@@ -107,7 +122,10 @@
                     email: email,
                     username: username,
                     password: password,
-                    password_r: password_r
+                    password_r: password_r,
+                    phone: phone,
+                    city: city,
+                    address: address
                 }),
                 success: function (r) {
                     $('#account_created_info').show('fast');

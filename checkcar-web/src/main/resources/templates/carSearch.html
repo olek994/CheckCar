@@ -7,35 +7,30 @@
 
 <body>
 <div th:fragment="part" layout:fragment="mainPartContent">
-    <div class="container-fluid">
-        <div class="row">
+    <div class="container-fluid checkCar_card">
+        <div class="row margin-top-20 margin-bottom-20">
             <div class="col-12">
                 <h3>Wyszukaj właściciela</h3>
             </div>
         </div>
-        <div class="row">
+        <div class="row margin-bottom-20">
             <div class="col-5">
                 <div class="form-group">
-                    <select id="search-car-model" class="form-control">
-                        <option hidden="hidden" class="search-car-default-value">Marka auta</option>
+                    <select id="search-car-model" class="form-control form-control-lg">
+                        <option hidden="hidden" class="search-car-default-value">Marka</option>
+                        <option th:each="carModel: ${carModels}" th:value="${carModel.id}" th:text="${carModel.model}"></option>
                     </select>
                 </div>
             </div>
             <div class="col-5">
                 <div class="form-group">
-                    <select id="search-car-type" class="form-control">
-                        <option hidden="hidden" class="search-car-default-value">Model auta</option>
+                    <select id="search-car-type" class="form-control form-control-lg">
+                        <option hidden="hidden" class="search-car-default-value">Model</option>
                     </select>
                 </div>
             </div>
             <div class="col-2">
-                <button id="search-car-button" class="btn btn-primary">Wyszukaj</button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <!--tabela wyszukania-->
+                <button id="search-car-button" class="btn btn-lg btn-outline-primary">Wyszukaj</button>
             </div>
         </div>
 
@@ -49,12 +44,102 @@
             </div>
         </div>
     </div>
+    <div class="row margin-top-20" id="found-cars-wrapper">
+
+    </div>
     <script th:inline="javascript">
             $('#search-car-button').on('click',function () {
                 //something to do
 
-                $('.show-search-info').show('fast');
-            })
+
+                let modelId = $("#search-car-model").val();
+                let typeId = $("#search-car-type").val();
+
+                if(modelId === "Marka" || typeId === "Model"){
+                    $('.show-search-info').show('fast');
+                }else{
+                    $('.show-search-info').hide('fast');
+
+                    $.ajax({
+                        method: 'GET',
+                        url: '/cars/' + modelId+"/"+typeId,
+                        contentType: 'application/json',
+
+                        success: function (cars) {
+
+                            $.each(cars, function (idx, itm) {
+                               $("#found-cars-wrapper").append(
+                                   "        <div class=\"col-12\">\n" +
+                                   "            <div  class=\"card carCard margin-bottom-20 card_box_shadow\">\n" +
+                                   "                <div class=\"carImage\" data-car-image="+itm.carImage+"\">\n" +
+                                   "                    <h3 class=\"card_text_bottom_left\">"+itm.model+" "+itm.type+"</h3>\n" +
+                                   "                </div>\n" +
+                                   "                <div class=\"row margin-top-10 margin-bottom-10 padding-top-20 padding-bottom-20\">\n" +
+                                   "                    <div class=\"col-6 mx-auto text-center\">\n" +
+                                   "                        <a href=\"#\"  data-car-id=\""+itm.id+"\" class=\"btn btn-outline-primary btn-lg form-control showCarDetails\">Szczegóły</a>\n" +
+                                   "                    </div>\n" +
+                                   "                </div>\n" +
+                                   "            </div>\n" +
+                                   "        </div>\n")
+
+
+                            });
+
+                            $.each($(".carImage"),function (idx,itm) {
+                                let carImage = $(this).attr("data-car-image");
+                                let divImage = $(itm);
+                                divImage.css("background-repeat","no-repeat");
+                                divImage.css("background-position","center");
+                                divImage.css("background-size","cover");
+                                divImage.css("height","250px");
+                                divImage.css("width","100%");
+                                divImage.css("background-image","url("+carImage+")");
+
+                            });
+
+                            $(".showCarDetails").on('click',function (e) {
+                                e.preventDefault();
+                                let carId = $(this).attr("data-car-id");
+                                CheckCarSPA.reloadPage("carDetails/"+carId);
+
+                            })
+
+                        },
+                        error: function (r) {
+                            console.log("error");
+                        }
+                    });
+
+                }
+            });
+
+            $('#search-car-model').on('change',function () {
+                let carModelId = $(this).val();
+
+                $.ajax({
+                    method: 'GET',
+                    url: '/carType/' + carModelId,
+                    contentType: 'application/json',
+
+                    success: function (data) {
+                        console.dir(data);
+                        $("#search-car-type").children("option:not(:first)").remove();
+
+                        $.each(data, function (idx, itm) {
+                            $("#search-car-type")
+                                .append($("<option></option>")
+                                    .attr("value", itm.id)
+                                    .text(itm.type));
+                        })
+
+                    },
+                    error: function (r) {
+                        console.log("error");
+                    }
+                });
+
+            });
+
     </script>
 </div>
 </body>

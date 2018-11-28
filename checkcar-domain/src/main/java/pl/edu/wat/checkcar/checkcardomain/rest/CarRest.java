@@ -29,4 +29,7 @@ public interface CarRest {
     @RequestMapping(value = "/car/{carId}",method = RequestMethod.DELETE)
     void deleteCar(@PathVariable("carId") Long carId);
 
+    @RequestMapping(value = "/cars/{modelId}/{typeId}",method = RequestMethod.GET)
+    List<CarDto> getCarsByModelIdAndTypeId(@PathVariable("modelId") Long modelId, @PathVariable("typeId") Long typeId);
+
 }

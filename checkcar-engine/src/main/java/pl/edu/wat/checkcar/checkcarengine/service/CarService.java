@@ -20,4 +20,6 @@ public interface CarService {
 
     void deleteCar(Long carId);
 
+    List<CarDto> getCarsByModelIdAndTypeId(Long modelId, Long typeId);
+
 }
