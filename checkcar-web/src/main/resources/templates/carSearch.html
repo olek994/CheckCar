@@ -71,10 +71,20 @@
                                $("#found-cars-wrapper").append(
                                    "        <div class=\"col-12\">\n" +
                                    "            <div  class=\"card carCard margin-bottom-20 card_box_shadow\">\n" +
-                                   "                <div class=\"carImage\" data-car-image="+itm.carImage+"\">\n" +
-                                   "                    <h3 class=\"card_text_bottom_left\">"+itm.model+" "+itm.type+"</h3>\n" +
+                                   "                <div class=\"carImage\" style=\"background-image: url("+itm.carImage+");\">\n" +
+                                   "                    <h3 class=\"card_text_bottom_left_search\">"+itm.model+" "+itm.type+"</h3>\n" +
                                    "                </div>\n" +
-                                   "                <div class=\"row margin-top-10 margin-bottom-10 padding-top-20 padding-bottom-20\">\n" +
+                                   "                <div class=\" card-body row\"> \n" +
+                                   "                    <div class=\"col-6\">\n" +
+                                   "                        <p class=\"form-control\">Rok produkcji: <span class=\"font-weight-bold\">"+itm.productionYear+"</span>r.</p>\n" +
+                                   "                        <p class=\"form-control\">Silnik: <span class=\"font-weight-bold\">"+itm.engine+"</span></p>\n" +
+                                   "                    </div>\n" +
+                                   "                    <div class=\"col-6 mx-auto text-center\">\n" +
+                                   "                        <p class=\"form-control\">Przebieg: <span  class=\"font-weight-bold\">"+itm.course+"</span>km</p>\n" +
+                                   "                        <p class=\"form-control\">Konie mechaniczne: <span  class=\"font-weight-bold\">"+itm.horsePower+"</span>KM</p>\n" +
+                                   "                    </div>\n" +
+                                   "                </div>\n" +
+                                   "                <div class=\"row margin-top-10 margin-bottom-10 padding-bottom-20\">\n" +
                                    "                    <div class=\"col-6 mx-auto text-center\">\n" +
                                    "                        <a href=\"#\"  data-car-id=\""+itm.id+"\" class=\"btn btn-outline-primary btn-lg form-control showCarDetails\">Szczegóły</a>\n" +
                                    "                    </div>\n" +
@@ -86,14 +96,12 @@
                             });
 
                             $.each($(".carImage"),function (idx,itm) {
-                                let carImage = $(this).attr("data-car-image");
                                 let divImage = $(itm);
                                 divImage.css("background-repeat","no-repeat");
                                 divImage.css("background-position","center");
                                 divImage.css("background-size","cover");
                                 divImage.css("height","250px");
                                 divImage.css("width","100%");
-                                divImage.css("background-image","url("+carImage+")");
 
                             });
 

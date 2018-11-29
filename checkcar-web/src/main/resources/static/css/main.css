@@ -107,3 +107,22 @@ body{
     color: #ffffff;
     text-transform: uppercase;
 }
+
+.card_text_bottom_left_search{
+    position: absolute;
+    left:10px;
+    bottom:250px;
+    text-shadow: 3px 3px 8px #000000;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.card_delete_top_right{
+    position: absolute;
+    right:20px;
+    top:10px;
+    color: #ffffff;
+    transition: all 0.5s;
+}
+.card_delete_top_right:hover{
+    color: #ff5f4c;
+}

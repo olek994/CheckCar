@@ -1,5 +1,6 @@
 package pl.edu.wat.checkcar.checkcarweb.Controller;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -224,7 +225,7 @@ public class MainController extends BaseController {
     @ResponseBody
     public List<CarData> getCarsByModelIdAndTypeId(@PathVariable("modelId") Long modelId,@PathVariable("typeId") Long typeId){
         List<CarDto> cars = carRest.getCarsByModelIdAndTypeId(modelId,typeId);
-        List<CarData> newCars = null;
+        List<CarData> newCars = new ArrayList<>();
 
         if(cars != null){
             newCars = new ArrayList<>();
@@ -267,6 +268,13 @@ public class MainController extends BaseController {
             newCars.add(carData);
         }
         return newCars;
+    }
+
+    @RequestMapping(value = "/delete/car/{carId}",method = RequestMethod.GET)
+    @ResponseBody
+    public boolean deleteCar(@PathVariable("carId") Long carId){
+        carRest.deleteCar(carId);
+        return true;
     }
 
 }

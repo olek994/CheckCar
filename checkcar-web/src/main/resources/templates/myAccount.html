@@ -48,6 +48,7 @@
         <div class="col-6" th:each="car: ${cars}">
             <div  class="card carCard margin-bottom-20 card_box_shadow">
                 <div class="carImage" th:attr="data-car-image=${car.carImage}">
+                    <a href="#"  th:attr="data-car-id=${car.Id}" class="deleteCar card_delete_top_right"><i class="fa fa-lg fa-trash" aria-hidden="true"></i></a>
                     <h3 class="card_text_bottom_left" th:text="${car.model}+' '+${car.type}"></h3>
                 </div>
                 <div class="row margin-top-10 margin-bottom-10 padding-top-20 padding-bottom-20">
@@ -79,6 +80,24 @@
             e.preventDefault();
             let carId = $(this).attr("data-car-id");
             CheckCarSPA.reloadPage("carDetails/"+carId);
+
+        })
+
+        $(".deleteCar").on("click",function (e) {
+            e.preventDefault();
+            let carId = $(this).attr("data-car-id");
+            $.ajax({
+                method: 'GET',
+                url: '/delete/car/' + carId,
+                contentType: 'application/json',
+
+                success: function () {
+                    CheckCarSPA.refreshPage();
+                },
+                error: function () {
+                    console.log("error");
+                }
+            });
 
         })
 
