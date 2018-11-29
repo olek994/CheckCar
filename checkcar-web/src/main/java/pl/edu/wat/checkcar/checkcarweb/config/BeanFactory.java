@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarModelRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarTypeRest;
+import pl.edu.wat.checkcar.checkcardomain.rest.InterestingCarRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.MeetingRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.PersonRest;
 
@@ -56,4 +57,8 @@ public class BeanFactory {
         return getRestInvoker(MeetingRest.class);
     }
 
+    @Bean(name = "InterestingCarRest")
+    public SpringRestInvokerProxyFactoryBean interestingCarRestClient(){
+        return getRestInvoker(InterestingCarRest.class);
+    }
 }

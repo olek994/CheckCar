@@ -15,14 +15,17 @@ import pl.edu.wat.checkcar.checkcardomain.GearBoxEnum;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarDto;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarModelDto;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarTypeDto;
+import pl.edu.wat.checkcar.checkcardomain.dto.InterestingCarDto;
 import pl.edu.wat.checkcar.checkcardomain.dto.PersonDto;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarModelRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarTypeRest;
+import pl.edu.wat.checkcar.checkcardomain.rest.InterestingCarRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.PersonRest;
 import pl.edu.wat.checkcar.checkcarweb.BaseController;
 import pl.edu.wat.checkcar.checkcarweb.data.AddCarData;
 import pl.edu.wat.checkcar.checkcarweb.data.CarData;
+import pl.edu.wat.checkcar.checkcarweb.data.addInterestingCarData;
 import pl.edu.wat.checkcar.checkcarweb.utils.EnumUtils;
 
 import java.util.ArrayList;
@@ -47,6 +50,9 @@ public class MainController extends BaseController {
 
     @Autowired
     PersonRest personRest;
+
+    @Autowired
+    InterestingCarRest interestingCarRest;
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String getMainPage(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part){
@@ -215,6 +221,11 @@ public class MainController extends BaseController {
             }
             carData.setId(car.getId());
             PersonDto owner = personRest.getPerson(car.getOwnerId());
+            if(getLoggedInPerson().getId().equals(car.getOwnerId())){
+                model.addAttribute("selfCar",true);
+            }else{
+                model.addAttribute("selfCar",false);
+            }
             model.addAttribute("owner",owner);
             model.addAttribute("car",carData);
         }
@@ -274,6 +285,139 @@ public class MainController extends BaseController {
     @ResponseBody
     public boolean deleteCar(@PathVariable("carId") Long carId){
         carRest.deleteCar(carId);
+        return true;
+    }
+
+    @RequestMapping(value = "/user/details/{personId}",method = RequestMethod.GET)
+    public String getPersonDetailsView(Model model,  @RequestParam(name = "part", required = false, defaultValue = "false") String part, @PathVariable("personId") Long personId){
+        List<CarDto> personCars = carRest.getCarOfOwner(personId);
+        List<CarData> newCars = null;
+        PersonDto personDto = personRest.getPerson(personId);
+
+        if(personCars != null){
+            newCars = new ArrayList<>();
+        }
+
+        for(CarDto car: personCars){
+            CarData carData = new CarData();
+            carData.setCourse(car.getCourse());
+            carData.setProductionYear(car.getYearOfProduction());
+            CarModelDto carModelDto = carModelRest.getCarModel(car.getCarModelId());
+            if (carModelDto != null) {
+                carData.setModel(carModelDto.getModel());
+            }else{
+                carData.setModel("");
+            }
+            CarTypeDto type = carTypeRest.getCarType(car.getCarTypeId());
+            if(type != null){
+                carData.setType(type.getType());
+            }else{
+                carData.setType("");
+            }
+            if(car.getCarImage() != null){
+                carData.setCarImage(new String(car.getCarImage()));
+            }
+            if(car.getEngine() != null){
+                carData.setEngine(car.getEngine());
+            }
+            if(car.getFuel() != null){
+                carData.setFuel(car.getFuel());
+            }
+            if(car.getGearBox() != null){
+                carData.setGearBox(EnumUtils.getGearBoxEnumString(car.getGearBox()));
+            }
+            if(car.getHorsePower() != null){
+                carData.setHorsePower(car.getHorsePower());
+            }
+
+
+            carData.setId(car.getId());
+            newCars.add(carData);
+        }
+        model.addAttribute("cars",newCars);
+        model.addAttribute("user",personDto);
+
+        return getTemplatePath("personDetails",part);
+    }
+
+    @RequestMapping(value = "/interesting/cars",method = RequestMethod.GET)
+    public String getInterestingCarsView(Model model,  @RequestParam(name = "part", required = false, defaultValue = "false") String part){
+        List<InterestingCarDto> interestingCars = interestingCarRest.getInterestingCarOfInterestedId(getLoggedInPerson().getId());
+        List<CarDto> cars = new ArrayList<>();
+        List<CarData> carsWithModelType = new ArrayList<>();
+        if(interestingCars == null){
+            interestingCars = new ArrayList<>();
+        }
+
+        for(InterestingCarDto interestingCarDto: interestingCars){
+            cars.add(carRest.getCar(interestingCarDto.getCarId()));
+        }
+        for(CarDto car: cars){
+            CarData carWithData = new CarData();
+            carWithData.setCourse(car.getCourse());
+            carWithData.setProductionYear(car.getYearOfProduction());
+            CarModelDto carModelDto = carModelRest.getCarModel(car.getCarModelId());
+            if (carModelDto != null) {
+                carWithData.setModel(carModelDto.getModel());
+            }else{
+                carWithData.setModel("");
+            }
+            CarTypeDto type = carTypeRest.getCarType(car.getCarTypeId());
+            if(type != null){
+                carWithData.setType(type.getType());
+            }else{
+                carWithData.setType("");
+            }
+            if(car.getCarImage() != null){
+                carWithData.setCarImage(new String(car.getCarImage()));
+            }
+            if(car.getEngine() != null){
+                carWithData.setEngine(car.getEngine());
+            }
+            if(car.getFuel() != null){
+                carWithData.setFuel(car.getFuel());
+            }
+            if(car.getGearBox() != null){
+                carWithData.setGearBox(EnumUtils.getGearBoxEnumString(car.getGearBox()));
+            }
+            if(car.getHorsePower() != null){
+                carWithData.setHorsePower(car.getHorsePower());
+            }
+
+
+            carWithData.setId(car.getId());
+            carsWithModelType.add(carWithData);
+        }
+        model.addAttribute("cars",carsWithModelType);
+        return getTemplatePath("interestingCars",part);
+    }
+
+    @RequestMapping(value = "/add/interesting/car/",method = RequestMethod.POST)
+    @ResponseBody
+    public InterestingCarDto saveInterestingCar(@RequestBody addInterestingCarData addInterestingCarData){
+        if(addInterestingCarData == null){
+            return null;
+        }
+        InterestingCarDto interestingCarDto = new InterestingCarDto();
+        interestingCarDto.setCarId(addInterestingCarData.getCarId());
+        interestingCarDto.setInterestedId(getLoggedInPerson().getId());
+        return interestingCarRest.createInterestingCar(interestingCarDto);
+
+    }
+
+    @RequestMapping(value = "/delete/interesting/car/{carId}",method = RequestMethod.GET)
+    @ResponseBody
+    public boolean deleteInterestingCar(@PathVariable("carId") Long carId){
+        if(carId == null){
+            System.out.println("CarId is null");
+            return false;
+        }
+        InterestingCarDto interestingCarDto = interestingCarRest.getInterestingCarByInteresdIdAndCarId(getLoggedInPerson().getId(),carId);
+        if(interestingCarDto == null){
+            System.out.println("InterestingCarDto is null");
+            return false;
+        }
+        interestingCarRest.deleteInterestingCar(interestingCarDto.getId());
         return true;
     }
 

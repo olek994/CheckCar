@@ -33,27 +33,12 @@
                     <p>Skrzynia biegów: <span class="font-weight-bold" th:text="${car.gearBox}"></span></p>
                 </div>
             </div>
-        </div>
-        <div class="ownerDetails">
-
-            <div class="row margin-top-20">
-                <div class="col-5">
-                    <h3>Szczegóły Właściciela</h3>
-                </div>
-            </div>
-            <div class="row margin-top-20 margin-bottom-20">
-                <div class="col-6">
-                    <p>Imię: <span class="font-weight-bold" th:text="${owner.name}"></span></p>
-                    <p>Nazwisko: <span class="font-weight-bold" th:text="${owner.surname}"></span></p>
-                    <p>Telefon: <span class="font-weight-bold" th:text="${owner.email}"></span></p>
-                </div>
-                <div class="col-6">
-                    <p>Login: <span class="font-weight-bold" th:text="${owner.userName}"></span></p>
-                    <p>Email: <span class="font-weight-bold" th:text="${owner.phone}"></span></p>
+            <div th:unless="${selfCar == true}" class="row padding-bottom-20">
+                <div class="col-6 mx-auto text-center">
+                    <button id="showPersonDetails" class="btn btn-lg btn-outline-primary form-control" th:attr="data-person-id=${owner.id}">Konto właściciela</button>
                 </div>
             </div>
         </div>
-
 
     </div>
 
@@ -65,6 +50,13 @@
         $("#carMainImage").css("background-size","cover");
         $("#carMainImage").css("height","250px");
         $("#carMainImage").css("width","100%");
+
+
+        $("#showPersonDetails").on('click',function (e) {
+            e.preventDefault();
+            let personId = $(this).attr("data-person-id");
+            CheckCarSPA.reloadPage("/user/details/"+personId);
+        })
 
     </script>
 </div>

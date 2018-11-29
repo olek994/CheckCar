@@ -72,6 +72,7 @@
                                    "        <div class=\"col-12\">\n" +
                                    "            <div  class=\"card carCard margin-bottom-20 card_box_shadow\">\n" +
                                    "                <div class=\"carImage\" style=\"background-image: url("+itm.carImage+");\">\n" +
+                                   "                     <a href=\"#\" data-car-id=\""+itm.id+"\" class=\"addToInterestingCar card_favorite_top_right\"><i class=\"favoritveCar fa fa-lg fa-star-o\" aria-hidden=\"true\"></i></a>\n" +
                                    "                    <h3 class=\"card_text_bottom_left_search\">"+itm.model+" "+itm.type+"</h3>\n" +
                                    "                </div>\n" +
                                    "                <div class=\" card-body row\"> \n" +
@@ -105,12 +106,58 @@
 
                             });
 
+
+
+
                             $(".showCarDetails").on('click',function (e) {
                                 e.preventDefault();
                                 let carId = $(this).attr("data-car-id");
                                 CheckCarSPA.reloadPage("carDetails/"+carId);
 
-                            })
+                            });
+                            let fillStar = true;
+                            $(".addToInterestingCar").on('click',function (e) {
+                                e.preventDefault();
+                                let carId = $(this).attr("data-car-id");
+                                console.log(carId);
+                                let star = $(this).find(":first-child");
+                                if(fillStar) {
+                                    star.removeClass("fa-star-o");
+                                    star.addClass("fa-star");
+
+                                    let data = {};
+                                    data['carId'] = carId;
+
+                                    $.ajax({
+                                        method: 'POST',
+                                        url: '/add/interesting/car/',
+                                        contentType: 'application/json',
+                                        data: JSON.stringify(data),
+                                        success: function (data) {
+                                            console.dir(data);
+                                        },
+                                        error: function (e) {
+                                        }
+                                    });
+
+                                }else{
+                                    star.addClass("fa-star-o");
+                                    star.removeClass("fa-star");
+
+                                    $.ajax({
+                                        method: 'get',
+                                        url: '/delete/interesting/car/'+carId,
+                                        contentType: 'application/json',
+                                        success: function (e) {
+                                            console.dir(e);
+                                        },
+                                        error: function (e) {
+                                        }
+                                    });
+
+                                }
+                                fillStar = !fillStar;
+                            });
 
                         },
                         error: function (r) {

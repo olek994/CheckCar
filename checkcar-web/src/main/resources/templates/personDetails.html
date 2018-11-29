@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{main.html}">
+
+
+<body>
+<div th:fragment="part" layout:fragment="mainPartContent">
+    <link th:href="@{/css/myAccount.css}" rel="stylesheet"/>
+    <div class="alert alert-success text-center" role="alert">
+        <strong>Pamiętaj!</strong> Możesz zadzwonić do właściciela bądź napisać do niego w aplikacji mobilnej!
+    </div>
+    <div class="container-fluid checkCar_card margin-bottom-10">
+
+        <div class="row margin-top-20">
+            <div class="col-12">
+                <h3 th:text="${user.name}+' '+${user.surname}"></h3>
+            </div>
+        </div>
+
+        <div class="row margin-left-20 margin-top-10">
+            <div class="col-6">
+                <h5>Login: <span class="font-weight-bold" th:text="${user.userName}"></span></h5>
+                <h5>E-mail: <span class="font-weight-bold" th:text="${user.email}"></span></h5>
+                <h5>Data urodzenia: <span class="font-weight-bold" th:text="${user.birthday}"></span></h5>
+                <h5>Miasto:  <span class="font-weight-bold" th:text="${user.city}"></span></h5>
+            </div>
+            <div class="col-6">
+                <h5>Numer telefonu: <span class="font-weight-bold" th:text="${user.phone}"></span></h5>
+                <h5>Adres: <span class="font-weight-bold" th:text="${user.address}"></span></h5>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row " th:if="${cars != null}">
+        <div class="col-6" th:each="car: ${cars}">
+            <div  class="card carCard margin-bottom-20 card_box_shadow">
+                <div class="carImage" th:attr="data-car-image=${car.carImage}">
+                    <h3 class="card_text_bottom_left" th:text="${car.model}+' '+${car.type}"></h3>
+                </div>
+                <div class="row margin-top-10 margin-bottom-10 padding-top-20 padding-bottom-20">
+                    <div class="col-6 mx-auto text-center">
+                        <a href="#"  th:attr="data-car-id=${car.Id}" class="btn btn-outline-primary btn-lg form-control showCarDetails">Szczegóły</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+
+        $.each($(".carImage"),function (idx,itm) {
+            let carImage = $(this).attr("data-car-image");
+            let divImage = $(itm);
+            divImage.css("background-image","url("+carImage+")");
+            divImage.css("background-repeat","no-repeat");
+            divImage.css("background-position","center");
+            divImage.css("background-size","cover");
+            divImage.css("height","250px");
+            divImage.css("width","100%");
+        });
+
+        $(".showCarDetails").on('click',function (e) {
+            e.preventDefault();
+            let carId = $(this).attr("data-car-id");
+            CheckCarSPA.reloadPage("carDetails/"+carId);
+
+        });
+
+    </script>
+</div>
+</body>
+</html>

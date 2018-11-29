@@ -126,3 +126,13 @@ body{
 .card_delete_top_right:hover{
     color: #ff5f4c;
 }
+.card_favorite_top_right{
+    position: absolute;
+    right:20px;
+    top:10px;
+    color: #ffffff;
+    transition: all 0.5s;
+}
+.card_favorite_top_right:hover{
+    color: #e2ff55;
+}
