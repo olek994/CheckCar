@@ -91,9 +91,14 @@
                                    "                    </div>\n" +
                                    "                </div>\n" +
                                    "            </div>\n" +
-                                   "        </div>\n")
+                                   "        </div>\n");
 
-
+                                if(itm.inInteresting === true){
+                                    let last_card = $("#found-cars-wrapper").children().last();
+                                    let star = last_card.find(".favoritveCar");
+                                    star.removeClass("fa-star-o");
+                                    star.addClass("fa-star");
+                                }
                             });
 
                             $.each($(".carImage"),function (idx,itm) {
@@ -108,7 +113,6 @@
 
 
 
-
                             $(".showCarDetails").on('click',function (e) {
                                 e.preventDefault();
                                 let carId = $(this).attr("data-car-id");
@@ -118,8 +122,10 @@
                             let fillStar = true;
                             $(".addToInterestingCar").on('click',function (e) {
                                 e.preventDefault();
+                                if($(this).find(':first-child').hasClass("fa-star")){
+                                    fillStar = false;
+                                }
                                 let carId = $(this).attr("data-car-id");
-                                console.log(carId);
                                 let star = $(this).find(":first-child");
                                 if(fillStar) {
                                     star.removeClass("fa-star-o");

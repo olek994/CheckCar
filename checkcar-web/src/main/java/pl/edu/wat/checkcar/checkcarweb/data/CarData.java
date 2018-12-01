@@ -23,4 +23,5 @@ public class CarData {
     private String horsePower;
     private String fuel;
     private String gearBox;
+    private boolean isInInteresting;
 }

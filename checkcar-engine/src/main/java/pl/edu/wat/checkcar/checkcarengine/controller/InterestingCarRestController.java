@@ -48,7 +48,7 @@ public class InterestingCarRestController implements InterestingCarRest {
     }
 
     @Override
-    public InterestingCarDto getInterestingCarByInteresdIdAndCarId(Long interesdId, Long carId) {
+    public InterestingCarDto getInterestingCarByInteresdIdAndCarId(@PathVariable("interesdId") Long interesdId, @PathVariable("carId") Long carId) {
         return interestingCarService.getInterestingCarByInteredIdAndCarId(interesdId,carId);
     }
 }

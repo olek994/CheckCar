@@ -243,6 +243,9 @@ public class MainController extends BaseController {
         }
 
         for(CarDto car: cars){
+            if(car.getOwnerId().equals(getLoggedInPerson().getId())){
+                continue;
+            }
             CarData carData = new CarData();
             carData.setCourse(car.getCourse());
             carData.setProductionYear(car.getYearOfProduction());
@@ -274,7 +277,10 @@ public class MainController extends BaseController {
                 carData.setHorsePower(car.getHorsePower());
             }
 
-
+            InterestingCarDto interestingCarDto = interestingCarRest.getInterestingCarByInteresdIdAndCarId(getLoggedInPerson().getId(),car.getId());
+            if (interestingCarDto != null) {
+                carData.setInInteresting(true);
+            }
             carData.setId(car.getId());
             newCars.add(carData);
         }
@@ -330,7 +336,6 @@ public class MainController extends BaseController {
                 carData.setHorsePower(car.getHorsePower());
             }
 
-
             carData.setId(car.getId());
             newCars.add(carData);
         }
@@ -384,7 +389,6 @@ public class MainController extends BaseController {
                 carWithData.setHorsePower(car.getHorsePower());
             }
 
-
             carWithData.setId(car.getId());
             carsWithModelType.add(carWithData);
         }
@@ -409,12 +413,10 @@ public class MainController extends BaseController {
     @ResponseBody
     public boolean deleteInterestingCar(@PathVariable("carId") Long carId){
         if(carId == null){
-            System.out.println("CarId is null");
             return false;
         }
         InterestingCarDto interestingCarDto = interestingCarRest.getInterestingCarByInteresdIdAndCarId(getLoggedInPerson().getId(),carId);
         if(interestingCarDto == null){
-            System.out.println("InterestingCarDto is null");
             return false;
         }
         interestingCarRest.deleteInterestingCar(interestingCarDto.getId());
