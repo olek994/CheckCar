@@ -23,6 +23,9 @@ public interface CarRest {
     @RequestMapping(value = "/car/owner/{ownerId}",method = RequestMethod.GET)
     List<CarDto> getCarOfOwner(@PathVariable("ownerId") Long ownerId);
 
+    @RequestMapping(value = "/car/all",method = RequestMethod.GET)
+    List<CarDto> getAllCars();
+
     @RequestMapping(value = "/car/{carId}",method = RequestMethod.PUT)
     void updateCar(@PathVariable("carId") Long carId, @RequestBody CarDto carDto);
 

@@ -21,4 +21,5 @@ public class AddCarData {
     private String horsePower;
     private String fuel;
     private String gearBox;
+    private Long costForRide;
 }

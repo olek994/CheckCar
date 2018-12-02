@@ -133,6 +133,22 @@ body{
     color: #ffffff;
     transition: all 0.5s;
 }
+.card_text_bottom_right_search{
+    position: absolute;
+    right:10px;
+    bottom:100px;
+    text-shadow: 3px 3px 8px #000000;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.card_text_bottom_right_search_v2{
+    position: absolute;
+    right:10px;
+    bottom:250px;
+    text-shadow: 3px 3px 8px #000000;
+    color: #ffffff;
+    text-transform: uppercase;
+}
 .card_favorite_top_right:hover{
     color: #e2ff55;
 }

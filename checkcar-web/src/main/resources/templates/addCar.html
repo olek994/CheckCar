@@ -82,12 +82,17 @@
         </div>
 
         <div class="row margin-bottom-20">
-            <div class="col-12">
+            <div class="col-6">
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="addCarImage">
                         <label class="custom-file-label" id="addCarImageURI" for="addCarImage">Dodaj zdjęcie</label>
                     </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control" id="carCostForRide" placeholder="Koszt przejazdu">
                 </div>
             </div>
         </div>
@@ -143,6 +148,7 @@
             let engine = $("#carEngine").val();
             let horsePower = $("#carHorsePower").val();
             let fuel = $("#carFuel").val();
+            let costForRide = $("#carCostForRide").val();
 
             if(model !== "Model" && type !== "Marka" && course !== "" && productionYear !== "" && file !== undefined ||
                 gearBox !== "Skrzynia biegów" || engine !== "" || horsePower !== "" || fuel !== ""){
@@ -160,6 +166,7 @@
                     data['horsePower'] = horsePower;
                     data['fuel'] = fuel;
                     data['gearBox'] = gearBox;
+                    data['costForRide'] = costForRide;
 
                     $.ajax({
                         method: 'POST',

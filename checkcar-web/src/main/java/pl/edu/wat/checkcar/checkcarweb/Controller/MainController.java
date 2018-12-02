@@ -3,6 +3,9 @@ package pl.edu.wat.checkcar.checkcarweb.Controller;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +31,10 @@ import pl.edu.wat.checkcar.checkcarweb.data.CarData;
 import pl.edu.wat.checkcar.checkcarweb.data.addInterestingCarData;
 import pl.edu.wat.checkcar.checkcarweb.utils.EnumUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -56,9 +62,59 @@ public class MainController extends BaseController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String getMainPage(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part){
+        List<CarDto> cars = carRest.getAllCars();
+        List<CarDto> carsSubList = new ArrayList<>();
+        if(cars != null){
+            carsSubList = cars.subList(Math.max(cars.size() - 3, 0), cars.size());
+            Collections.reverse(carsSubList);
+        }
+        List<CarData> newCars = new ArrayList<>();
+
+
+        for(CarDto car: carsSubList){
+            CarData carData = new CarData();
+            carData.setCourse(car.getCourse());
+            carData.setProductionYear(car.getYearOfProduction());
+            CarModelDto carModelDto = carModelRest.getCarModel(car.getCarModelId());
+            if (carModelDto != null) {
+                carData.setModel(carModelDto.getModel());
+            }else{
+                carData.setModel("");
+            }
+            CarTypeDto type = carTypeRest.getCarType(car.getCarTypeId());
+            if(type != null){
+                carData.setType(type.getType());
+            }else{
+                carData.setType("");
+            }
+            if(car.getCarImage() != null){
+                carData.setCarImage(new String(car.getCarImage()));
+            }
+            if(car.getEngine() != null){
+                carData.setEngine(car.getEngine());
+            }
+            if(car.getFuel() != null){
+                carData.setFuel(car.getFuel());
+            }
+            if(car.getGearBox() != null){
+                carData.setGearBox(EnumUtils.getGearBoxEnumString(car.getGearBox()));
+            }
+            if(car.getHorsePower() != null){
+                carData.setHorsePower(car.getHorsePower());
+            }
+            if(car.getCostForRide() != null){
+                carData.setCostForRide(car.getCostForRide());
+            }
+
+            carData.setId(car.getId());
+            newCars.add(carData);
+        }
+        model.addAttribute("cars",newCars);
+
 
         return getTemplatePath("dashboard",part);
     }
+
 
     @RequestMapping(value = "/carSearch",method = RequestMethod.GET)
     public String getCarSearchView(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part){
@@ -108,7 +164,9 @@ public class MainController extends BaseController {
             if(car.getHorsePower() != null){
                 carData.setHorsePower(car.getHorsePower());
             }
-
+            if(car.getCostForRide() != null){
+                carData.setCostForRide(car.getCostForRide());
+            }
 
             carData.setId(car.getId());
             newCars.add(carData);
@@ -164,6 +222,7 @@ public class MainController extends BaseController {
         carDto.setEngine(addCarData.getEngine());
         carDto.setFuel(addCarData.getFuel());
         carDto.setHorsePower(addCarData.getHorsePower());
+        carDto.setCostForRide(addCarData.getCostForRide());
         if(addCarData.getGearBox().equals("MANUAL")){
             carDto.setGearBox(GearBoxEnum.MANUAL);
         }else if (addCarData.getGearBox().equals("AUTOMATIC")){
@@ -218,6 +277,9 @@ public class MainController extends BaseController {
             }
             if(car.getHorsePower() != null){
                 carData.setHorsePower(car.getHorsePower());
+            }
+            if(car.getCostForRide() != null){
+                carData.setCostForRide(car.getCostForRide());
             }
             carData.setId(car.getId());
             PersonDto owner = personRest.getPerson(car.getOwnerId());
@@ -276,13 +338,18 @@ public class MainController extends BaseController {
             if(car.getHorsePower() != null){
                 carData.setHorsePower(car.getHorsePower());
             }
-
+            if(car.getCostForRide() != null){
+                carData.setCostForRide(car.getCostForRide());
+            }
             InterestingCarDto interestingCarDto = interestingCarRest.getInterestingCarByInteresdIdAndCarId(getLoggedInPerson().getId(),car.getId());
             if (interestingCarDto != null) {
                 carData.setInInteresting(true);
             }
             carData.setId(car.getId());
             newCars.add(carData);
+        }
+        if(newCars.isEmpty()){
+            newCars = null;
         }
         return newCars;
     }
@@ -335,7 +402,9 @@ public class MainController extends BaseController {
             if(car.getHorsePower() != null){
                 carData.setHorsePower(car.getHorsePower());
             }
-
+            if(car.getCostForRide() != null){
+                carData.setCostForRide(car.getCostForRide());
+            }
             carData.setId(car.getId());
             newCars.add(carData);
         }
@@ -388,7 +457,9 @@ public class MainController extends BaseController {
             if(car.getHorsePower() != null){
                 carWithData.setHorsePower(car.getHorsePower());
             }
-
+            if(car.getCostForRide() != null){
+                carWithData.setCostForRide(car.getCostForRide());
+            }
             carWithData.setId(car.getId());
             carsWithModelType.add(carWithData);
         }

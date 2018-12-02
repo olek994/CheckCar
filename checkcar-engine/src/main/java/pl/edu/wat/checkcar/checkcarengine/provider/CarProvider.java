@@ -42,6 +42,10 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
         return convert(repo.findAllByOwnerId(personRepository.findOne(ownerId)));
     }
 
+    public List<CarDto> getAllCars(){
+        return convert(repo.findAll());
+    }
+
     public void updateCar(Long carId, CarDto carDto){
         repo.save(convertToEntity(carDto,repo.findOne(carId)));
     }
@@ -97,6 +101,10 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
 
         if(dto.getGearBox() != null){
             entity.setGearBox(dto.getGearBox());
+        }
+
+        if(dto.getCostForRide() != null){
+            entity.setCostForRide(dto.getCostForRide());
         }
 
         return entity;

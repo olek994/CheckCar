@@ -122,10 +122,11 @@
 			<artifactId>font-awesome</artifactId>
 			<version>4.7.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>plotly.js</artifactId>
-			<version>1.41.3</version>
+			<version>1.42.5</version>
 		</dependency>
 
 	</dependencies>

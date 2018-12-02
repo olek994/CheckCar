@@ -36,6 +36,11 @@ public class CarRestController implements CarRest {
     }
 
     @Override
+    public List<CarDto> getAllCars() {
+        return carService.getAllCars();
+    }
+
+    @Override
     public void updateCar(@PathVariable("carId")Long carId,@RequestBody CarDto carDto) {
         carService.updateCar(carId,carDto);
     }

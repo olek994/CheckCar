@@ -7,16 +7,79 @@
 
 <body>
 <div th:fragment="part" layout:fragment="mainPartContent">
-    <div class="container-fluid checkCar_card">
-        <div class="row">
+    <link th:href="@{/css/myAccount.css}" rel="stylesheet"/>
+
+    <div class="container-fluid checkCar_card margin-bottom-10">
+        <div class="row margin-top-10 margin-bottom-10 margin-right-10">
             <div class="col-12">
-                Slider
+                <div id="carChart"></div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">Najpopularniejsze auta w tym tygodzniu</div>
+    </div>
+    <div class="row margin-top-20 " th:if="${not #lists.isEmpty(cars)}">
+        <h3 class="margin-left-10">Ostatnio dodane samochody</h3>
+        <div class="col-12" th:each="car: ${cars}">
+            <div  class="card carCard margin-bottom-20 card_box_shadow">
+                <div class="carImage" th:attr="data-car-image=${car.carImage}">
+                    <h3 class="card_text_bottom_left_search" th:text="${car.model}+' '+${car.type}"></h3>
+                    <h3 class="card_text_bottom_right_search_v2"><span th:text="${car.costForRide}" ></span> zł</h3>
+                </div>
+                <div class=" card-body row">
+                    <div class="col-6">
+                        <p class="form-control">Rok produkcji: <span class="font-weight-bold" th:text="${car.productionYear}"></span>r.</p>
+                        <p class="form-control">Silnik: <span class="font-weight-bold" th:text="${car.engine}"></span><p>
+                    </div>
+                    <div class="col-6 mx-auto text-center">
+                        <p class="form-control">Przebieg: <span  class="font-weight-bold" th:text="${car.course}"></span>km</p>
+                        <p class="form-control">Konie mechaniczne: <span  class="font-weight-bold" th:text="${car.horsePower}"></span>KM</p>
+                    </div>
+                </div>
+                <div class="row margin-top-10 margin-bottom-10 padding-top-20 padding-bottom-20">
+                    <div class="col-6 mx-auto text-center">
+                        <a href="#"  th:attr="data-car-id=${car.Id}" class="btn btn-outline-primary btn-lg form-control showCarDetails">Szczegóły</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <script th:inline="javascript">
+
+        $.each($(".carImage"),function (idx,itm) {
+            let carImage = $(this).attr("data-car-image");
+            let divImage = $(itm);
+            divImage.css("background-image","url("+carImage+")");
+            divImage.css("background-repeat","no-repeat");
+            divImage.css("background-position","center");
+            divImage.css("background-size","cover");
+            divImage.css("height","250px");
+            divImage.css("width","100%");
+        });
+
+        $(".showCarDetails").on('click',function (e) {
+            e.preventDefault();
+            let carId = $(this).attr("data-car-id");
+            CheckCarSPA.reloadPage("carDetails/"+carId);
+
+        });
+        //TODO WYKRES DODANYCH DZISIAJ SAMOCHODOW
+
+        let data = [
+            {
+                x: ['giraffes', 'orangutans', 'monkeys'],
+                y: [20, 14, 23],
+                type: 'bar'
+            }
+        ];
+        let layout = {
+            title: 'Dzisiaj dodane samochody',
+            titlefont: {
+                size: 36
+            },
+            barmode: 'group',
+            showLegend: false
+        };
+        Plotly.newPlot('carChart', data,layout, {displayModeBar: false});
+    </script>
 </div>
 </body>
 </html>

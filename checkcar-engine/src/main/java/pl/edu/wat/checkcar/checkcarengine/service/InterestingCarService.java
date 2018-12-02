@@ -19,6 +19,8 @@ public interface InterestingCarService {
 
     InterestingCarDto getInterestingCar(Long interestingCarId);
 
+
+
     List<InterestingCarDto> getInterestingCarOfInteresdId(Long interestedId);
 
     void updateInterestingCar(Long interestingCarId, InterestingCarDto interestingCarDto);

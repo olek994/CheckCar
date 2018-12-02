@@ -15,12 +15,20 @@
             </div>
         </div>
     </div>
-    <div class="row " th:if="${cars != null}">
+    <div class="row">
+        <div th:if="${#lists.isEmpty(cars)}" class="col-12 mx-auto text-center">
+            <div class="alert alert-danger" role="alert">
+                <strong>Ups!</strong> Dodaj interesujące samochody
+            </div>
+        </div>
+    </div>
+    <div class="row " th:if="${not #lists.isEmpty(cars)}">
         <div class="col-12" th:each="car: ${cars}">
             <div  class="card carCard margin-bottom-20 card_box_shadow">
                 <div class="carImage" th:attr="data-car-image=${car.carImage}">
                     <!--<a href="#"  th:attr="data-car-id=${car.Id}" class="deleteCar card_delete_top_right"><i class="fa fa-lg fa-trash" aria-hidden="true"></i></a>-->
                     <h3 class="card_text_bottom_left_search" th:text="${car.model}+' '+${car.type}"></h3>
+                    <h3 class="card_text_bottom_right_search_v2"><span th:text="${car.costForRide}" ></span> zł</h3>
                 </div>
                 <div class=" card-body row">
                     <div class="col-6">

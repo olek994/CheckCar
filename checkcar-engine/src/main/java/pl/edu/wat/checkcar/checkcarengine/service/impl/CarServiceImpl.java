@@ -36,6 +36,11 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<CarDto> getAllCars() {
+        return carProvider.getAllCars();
+    }
+
+    @Override
     public void updateCar(Long carId, CarDto carDto) {
         carProvider.updateCar(carId,carDto);
     }

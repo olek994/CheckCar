@@ -65,6 +65,9 @@ public class Car extends BaseEntity {
     @Column
     String fuel;
 
+    @Column
+    Long costForRide;
+
     @ManyToOne
     @JoinColumn(name = "ownerId")
     Person ownerId;
