@@ -11,11 +11,12 @@ body {
     background-color: #2e2e2e;
 }
 
-.nav-img{
-    width: 100%;
-    height: 100%;
-}
-
 .navbar-nav{
     font-size: 18px;
+}
+
+.navbar-brand {
+    background-image: url("nav3.png");
+    background-repeat:no-repeat;
+    padding:20px 80px;
 }
