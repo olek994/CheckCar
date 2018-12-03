@@ -15,6 +15,16 @@ body#LoginForm{
     position: center;
 }
 
+.brand{
+    background-image: url("nav3.png");
+    background-repeat:no-repeat;
+    padding: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+}
+
 .panel h2{
     color:#444444;
     font-size:28px;

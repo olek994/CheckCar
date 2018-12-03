@@ -12,7 +12,7 @@
     <div class="hello card_box_shadow">
         <div class="container">
             <h1 class="display-4">Cześć <span th:text="${user.name}"></span>!</h1>
-            <p>Witaj na portalu przeznaczonym dla ludzi chcących dowiedzieć się więcej o wymarzonym samochodzie</p>
+            <p>Pora spełnić Twoje marzenia o idealnym samochodzie</p>
         </div>
     </div>
 
@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <div class="row margin-top-20 " th:if="${not #lists.isEmpty(cars)}">
+    <div class="row margin-top-20" th:if="${not #lists.isEmpty(cars)}">
         <h3 class="margin-left-10">Ostatnio dodane samochody</h3>
         <div class="col-12" th:each="car: ${cars}">
             <div  class="card carCard margin-bottom-20 card_box_shadow">
