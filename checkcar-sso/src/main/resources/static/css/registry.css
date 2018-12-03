@@ -43,9 +43,9 @@ body#RegistryForm{
     background: #ffffff none repeat scroll 0 0;
     border-radius: 8px;
     margin: 25vh auto 30vh;
-    max-width: 38%;
+    max-width: 45%;
     padding: 50px 70px 45px 71px;
-    margin-top: 12vh;
+    margin-top: 6vh;
 }
 
 .login-form .form-group {

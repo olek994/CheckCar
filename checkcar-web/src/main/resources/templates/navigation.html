@@ -1,22 +1,21 @@
 <div xmlns:th="http://www.thymeleaf.org">
     <div th:remove="tag" th:fragment="navigation">
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-            <a class="navbar-brand menu-link" th:attr="data-url=${'/'}" href="#"><img class="nav-img" src="assets/nav3.png"></a>
+            <a class="navbar-brand menu-link" th:attr="data-url=${'/'}" href="#"><img class="nav-img" src="nav3.png"></a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link menu-link" id="carSearchLink" th:attr="data-url=${'/carSearch'}" href="#">Wyszukaj samochód</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu-link" id="myAccountLink" th:attr="data-url=${'/myAccount'}" href="#">Moje konto</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link menu-link" id="interestedCarsLink" th:attr="data-url=${'/interesting/cars'}" href="#">Interesujące samochodu</a>
-
                 </ul>
                 <ul class="navbar-nav mt-2 mt-md-0">
                     <li class="nav-item">
-                        <a class="nav-link fa fa-sign-out" id="logout" href="/logout">     Wyloguj</a>
+                        <a class="nav-link menu-link" id="myAccountLink" th:attr="data-url=${'/myAccount'}" href="#">Moje konto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" id="logout" href="/logout">Wyloguj</a>
                     </li>
                 </ul>
             </div>

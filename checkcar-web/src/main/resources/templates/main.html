@@ -16,6 +16,7 @@
     <link th:href="@{/css/main.css}" rel="stylesheet"/>
     <link th:href="@{/css/nav.css}" rel="stylesheet"/>
     <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="../static/images/fav.png"/>
 
     <script th:src="@{/webjars/jquery/3.3.1-1/jquery.min.js}"></script>
     <script th:src="@{/webjars/jquery-easing/1.3/jquery.easing.min.js}"></script>
@@ -29,6 +30,14 @@
 </head>
 <body class="" id="page-top">
     <div th:replace="navigation"></div>
+
+    <div class="hello">
+        <div class="container">
+            <h1 class="display-4">Cześć 'Tutaj kurwa nie dziala to th:text="${user.name}!</h1>
+            <p>Projekt ChecCar stworzony został z myślą o osobach, które pragną zakupić wymarzony samochód, lecz nie są do końca pewni, czy interesujących i mogel to napewno dobry strzał! Dzięki CheckCar możesz umówić się z właścicielami interesujących Cie modeli i poznać ich wszystkie wady i zalety.</p>
+        </div>
+    </div>
+
     <div id="main-content" class="content-wrapper container-fluid col-8  padding-top-20" style="margin-top: 120px">
         <div layout:fragment="mainPartContent"></div>
     </div>
@@ -46,5 +55,11 @@
        })
 
    </script>
+
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright text-center py-3">Copyright © 2018 | Created by CheckCar
+        </div>
+    </footer>
+
 </body>
 </html>
