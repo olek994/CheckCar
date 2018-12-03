@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12" id="carMainImage" style="height: 300px;">
                 <h2 class="font-weight-bold" th:text="${car.model} +' '+${car.type}"></h2>
-                <h3 class="card_text_bottom_right_search" th:text="${car.costForRide}"></h3>
+                <h3 class="card_text_bottom_right_search"><span th:text="${car.costForRide}"></span> zł</h3>
             </div>
         </div>
         <div class="carDetails">

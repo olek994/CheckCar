@@ -110,6 +110,7 @@ public class MainController extends BaseController {
             newCars.add(carData);
         }
         model.addAttribute("cars",newCars);
+        model.addAttribute("user",getLoggedInPerson());
 
 
         return getTemplatePath("dashboard",part);

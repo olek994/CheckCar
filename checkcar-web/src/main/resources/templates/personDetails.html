@@ -39,6 +39,7 @@
             <div  class="card carCard margin-bottom-20 card_box_shadow">
                 <div class="carImage" th:attr="data-car-image=${car.carImage}">
                     <h3 class="card_text_bottom_left" th:text="${car.model}+' '+${car.type}"></h3>
+                    <h3 class="card_text_bottom_right_search_v3"><span th:text="${car.costForRide}"></span> zł</h3>
                 </div>
                 <div class="row margin-top-10 margin-bottom-10 padding-top-20 padding-bottom-20">
                     <div class="col-6 mx-auto text-center">

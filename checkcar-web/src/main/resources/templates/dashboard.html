@@ -9,7 +9,14 @@
 <div th:fragment="part" layout:fragment="mainPartContent">
     <link th:href="@{/css/myAccount.css}" rel="stylesheet"/>
 
-    <div class="container-fluid checkCar_card margin-bottom-10">
+    <div class="hello card_box_shadow">
+        <div class="container">
+            <h1 class="display-4">Cześć <span th:text="${user.name}"></span>!</h1>
+            <p>Witaj na portalu przeznaczonym dla ludzi chcących dowiedzieć się więcej o wymarzonym samochodzie</p>
+        </div>
+    </div>
+
+    <div class="container-fluid checkCar_card margin-top-10 margin-bottom-10">
         <div class="row margin-top-10 margin-bottom-10 margin-right-10">
             <div class="col-12">
                 <div id="carChart"></div>

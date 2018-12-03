@@ -132,7 +132,7 @@ body{
 .card_text_bottom_right_search{
     position: absolute;
     right:10px;
-    bottom:100px;
+    bottom:10px;
     text-shadow: 3px 3px 8px #000000;
     color: #ffffff;
     text-transform: uppercase;
@@ -141,6 +141,14 @@ body{
     position: absolute;
     right:10px;
     bottom:250px;
+    text-shadow: 3px 3px 8px #000000;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.card_text_bottom_right_search_v3{
+    position: absolute;
+    right:10px;
+    bottom:100px;
     text-shadow: 3px 3px 8px #000000;
     color: #ffffff;
     text-transform: uppercase;
@@ -154,6 +162,8 @@ body{
     margin-top: 3.5rem;
     background-image: url("hello8_b.jpg");
     background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
     font-weight: bold;
     color: white;
 }
