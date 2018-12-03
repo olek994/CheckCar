@@ -58,15 +58,11 @@
 .padding-left-20{
     padding-left: 20px!important;
 }
-.checkCar-navigation{
-    font-size: 2em;
-    background-image: url("back.jpg");
-}
 #main-content{
     border-radius: 5px;
 }
 .checkCar_card{
-    background: #a5eadf;
+    background: #e4e4e4;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 4px 3px 13px -6px rgba(0,0,0,0.75);
@@ -151,4 +147,21 @@ body{
 }
 .card_favorite_top_right:hover{
     color: #e2ff55;
+}
+
+.hello {
+    padding: 2.5rem;
+    margin-top: 3.5rem;
+    background-image: url("hello8_b.jpg");
+    background-position:center;
+    font-weight: bold;
+    color: white;
+}
+
+#footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60px;   /* Height of the footer */
+    background:#e4e4e4;
 }

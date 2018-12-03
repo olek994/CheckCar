@@ -11,13 +11,13 @@
     <div class="container-fluid checkCar_card margin-bottom-10">
         <div class="row margin-top-20">
             <div class="col-12">
-                <h3>Moje konto</h3>
+                <h3><b>Moje konto</b></h3>
             </div>
         </div>
         <div class="row" th:if='${cars == null}'>
             <div class="col-6 mx-auto text-center">
                     <div class="alert alert-info" role="alert">
-                        <strong>Ups!</strong> Nie posiadasz samochodu
+                        <strong>Ups! Nic tu nie ma!</strong> Dodaj samochód aby przeglądać
                     </div>
             </div>
         </div>
@@ -26,11 +26,10 @@
             <div class="col-6">
                 <h5>Imię: <span class="font-weight-bold" th:text="${user.name}"></span></h5>
                 <h5>Nazwisko: <span class="font-weight-bold" th:text="${user.surname}"></span></h5>
-                <h5>Data urodzenia: <span class="font-weight-bold" th:text="${user.birthday}"></span></h5>
                 <h5>Miasto:  <span class="font-weight-bold" th:text="${user.city}"></span></h5>
+                <h5>Login: <span class="font-weight-bold" th:text="${user.userName}"></span></h5>
             </div>
             <div class="col-6">
-                <h5>Login: <span class="font-weight-bold" th:text="${user.userName}"></span></h5>
                 <h5>E-mail: <span class="font-weight-bold" th:text="${user.email}"></span></h5>
                 <h5>Numer telefonu: <span class="font-weight-bold" th:text="${user.phone}"></span></h5>
                 <h5>Adres: <span class="font-weight-bold" th:text="${user.address}"></span></h5>
