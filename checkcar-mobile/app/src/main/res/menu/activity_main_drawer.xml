@@ -5,8 +5,12 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/dashboard"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/dashboard" />
+        <item
             android:id="@+id/interesting_cars"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Interesujące samochody" />
+            android:title="@string/interesting_cars_menu" />
     </group>
 </menu>
