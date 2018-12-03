@@ -18,6 +18,7 @@
         <module>checkcar-domain</module>
         <module>checkcar-web</module>
         <module>checkcar-sso</module>
+        <module>checkcar-mobile</module>
     </modules>
 
     <dependencies>
