@@ -11,7 +11,32 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="interesting_cars">Interesujące samochody</string>
-    <string name="dashboard_title">CheckCar</string>
+    <string name="dashboard_title">CheckCar - Moje rozmowy</string>
     <string name="dashboard">Pulpit</string>
     <string name="interesting_cars_menu">Interesujące samochody</string>
+    <string name="title_activity_login">Zaloguj się</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Login</string>
+    <string name="prompt_password">Hasło</string>
+    <string name="login_title">CheckCar</string>
+    <string name="login_name">Login</string>
+    <string name="login_password">Hasło</string>
+    <string name="login_button_name">Zaloguj się</string>
+    <string name="car_model">Marka:</string>
+    <string name="car_type">Model:</string>
+    <string name="car_course">Przebieg:</string>
+    <string name="production_year">Rok</string>
+    <string name="chat_with_owner">Skontaktuj się</string>
+    <string name="car_engine">Silnik:</string>
+    <string name="car_fuel">Paliwo:</string>
+    <string name="car_horse_power">Moc:</string>
+
+    <string name="chat_title">Chat</string>
+    <string name="car_year">Rok:</string>
+    <string name="car_cost">Przejazd:</string>
+    <string name="edit_text_hint">Wprowadz wiadomość</string>
+    <string name="send_message">Wyślij</string>
+    <string name="car_owner">Właściciel auta:</string>
+    <string name="interested_title">Interesant:</string>
+    <string name="go_to_chat_button">Przejdź do rozmowy</string>
 </resources>

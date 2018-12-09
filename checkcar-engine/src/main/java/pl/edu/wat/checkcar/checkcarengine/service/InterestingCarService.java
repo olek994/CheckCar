@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.edu.wat.checkcar.checkcardomain.CarWithModelAndType;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarDto;
 import pl.edu.wat.checkcar.checkcardomain.dto.InterestingCarDto;
 
@@ -28,4 +29,6 @@ public interface InterestingCarService {
     void deleteInterestingCar(Long interestingCarId);
 
     InterestingCarDto getInterestingCarByInteredIdAndCarId(Long interesdId, Long carId);
+
+    List<CarWithModelAndType> getInterestingCarsWithModelAndType(Long interestedId);
 }

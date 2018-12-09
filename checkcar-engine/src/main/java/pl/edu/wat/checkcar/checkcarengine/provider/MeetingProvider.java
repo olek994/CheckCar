@@ -9,12 +9,15 @@ import pl.edu.wat.checkcar.checkcarengine.repository.CarRepository;
 import pl.edu.wat.checkcar.checkcarengine.repository.MeetingRepository;
 import pl.edu.wat.checkcar.checkcarengine.repository.PersonRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Aleksander Małkowicz, Date: 25.05.2018
  * Copyright by Wojskowa Akademia Techniczna im. Jarosława Dąbrowskiego, Warszawa 2018
  */
 @Component
-public class MeetingProvider extends BaseCrudProvider<Meeting,MeetingDto> {
+public class MeetingProvider extends BaseCrudProvider<Meeting, MeetingDto> {
 
     @Autowired
     MeetingRepository repo;
@@ -25,20 +28,31 @@ public class MeetingProvider extends BaseCrudProvider<Meeting,MeetingDto> {
     @Autowired
     PersonRepository userRepository;
 
-    public MeetingDto createMeeting(MeetingDto meetingDto){
-        return convert(repo.save(convertToEntity(meetingDto,null)));
+    public MeetingDto createMeeting(MeetingDto meetingDto) {
+        return convert(repo.save(convertToEntity(meetingDto, null)));
     }
 
-    public MeetingDto getMeeting(Long meetingId){
+    public MeetingDto getMeeting(Long meetingId) {
         return convert(repo.findOne(meetingId));
     }
 
-    public void updateMeeting(Long meetingId,MeetingDto meetingDto){
-        repo.save(convertToEntity(meetingDto,repo.findOne(meetingId)));
+    public void updateMeeting(Long meetingId, MeetingDto meetingDto) {
+        repo.save(convertToEntity(meetingDto, repo.findOne(meetingId)));
     }
 
-    public void deleteMeeting(Long meetingId){
+    public void deleteMeeting(Long meetingId) {
         repo.delete(meetingId);
+    }
+
+    public MeetingDto getMeetingByOwnerAndInterested(Long ownerId, Long interestedId) {
+        return convert(repo.findByOwnerIdAndInterestedId(ownerId, interestedId));
+    }
+
+    public List<MeetingDto> getAllMeetings(Long personId) {
+        List<MeetingDto> meetings = new ArrayList<>();
+        meetings.addAll(convert(repo.findAllByInterestedId(personId)));
+        meetings.addAll(convert(repo.findAllByOwnerId(personId)));
+        return meetings;
     }
 
     @Override
@@ -47,26 +61,13 @@ public class MeetingProvider extends BaseCrudProvider<Meeting,MeetingDto> {
             entity = new Meeting();
         }
 
-        if (dto.getCarId() != null) {
-            entity.setCarId(carRepository.findOne(dto.getCarId()));
-        }
-
-        if (dto.getCost() != null) {
-            entity.setCost(dto.getCost());
-        }
-
         if (dto.getInterestedId() != null) {
-            entity.setInterestedId(userRepository.findOne(dto.getInterestedId()));
+            entity.setInterestedId(dto.getInterestedId());
         }
-
-        if (dto.getMeetingDate() != null) {
-            entity.setMeetingDate(dto.getMeetingDate());
-        }
-
         if (dto.getOwnerId() != null) {
-            entity.setOwnerId(userRepository.findOne(dto.getOwnerId()));
+            entity.setOwnerId(dto.getOwnerId());
         }
 
-        return null;
+        return entity;
     }
 }

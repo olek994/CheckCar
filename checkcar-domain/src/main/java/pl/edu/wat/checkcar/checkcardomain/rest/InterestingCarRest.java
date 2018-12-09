@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.edu.wat.checkcar.checkcardomain.CarWithModelAndType;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarDto;
 import pl.edu.wat.checkcar.checkcardomain.dto.InterestingCarDto;
 
@@ -33,4 +34,8 @@ public interface InterestingCarRest  {
     @RequestMapping(value = "/interesting/car/{interesdId}/{carId}",method = RequestMethod.GET)
     InterestingCarDto getInterestingCarByInteresdIdAndCarId(@PathVariable("interesdId") Long interesdId, @PathVariable("carId") Long carId);
 
+    @RequestMapping(value = "/interesting/car/withModel/{interestedId}", method = RequestMethod.GET)
+    List<CarWithModelAndType> getInterestingCarsWithModelAndType(@PathVariable("interestedId") Long interestedId);
+
 }
+

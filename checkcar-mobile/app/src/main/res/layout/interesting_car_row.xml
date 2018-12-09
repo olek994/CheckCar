@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/interesting_car_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="8dp"
+        android:background="@drawable/interesting_car_card_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="340dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/car_image"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@color/white" />
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/car_details_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <TextView
+                android:id="@+id/car_model_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/car_model"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/car_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@+id/car_model_title"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/car_type_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/car_type"
+                android:textSize="20dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                app:layout_constraintEnd_toStartOf="@+id/car_type"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/car_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:textSize="20dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/car_course_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/car_course"
+                android:textSize="20dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                app:layout_constraintStart_toStartOf="@+id/car_model_title"
+                app:layout_constraintTop_toBottomOf="@+id/car_model_title" />
+
+            <TextView
+                android:id="@+id/car_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/car_model"
+                app:layout_constraintTop_toTopOf="@+id/car_course_title" />
+
+            <TextView
+                android:id="@+id/car_engine_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/car_engine"
+                android:textSize="20dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                app:layout_constraintStart_toStartOf="@+id/car_fuel_title"
+                app:layout_constraintTop_toBottomOf="@+id/car_fuel_title" />
+
+
+            <TextView
+                android:id="@+id/car_engine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/car_fuel"
+                app:layout_constraintTop_toBottomOf="@+id/car_fuel" />
+
+            <TextView
+                android:id="@+id/car_fuel_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="20dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:text="@string/car_fuel"
+                app:layout_constraintStart_toStartOf="@+id/car_course_title"
+                app:layout_constraintTop_toBottomOf="@+id/car_course_title" />
+
+            <TextView
+                android:id="@+id/car_fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/car_course"
+                app:layout_constraintTop_toBottomOf="@+id/car_course" />
+
+            <TextView
+                android:id="@+id/car_horse_power_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:text="@string/car_horse_power"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/car_engine_title"
+                app:layout_constraintTop_toBottomOf="@+id/car_engine_title" />
+
+            <TextView
+                android:id="@+id/car_horse_power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/car_engine"
+                app:layout_constraintTop_toBottomOf="@+id/car_engine" />
+
+            <TextView
+                android:id="@+id/car_year_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="20dp"
+                android:text="@string/car_year"
+                app:layout_constraintStart_toStartOf="@+id/car_horse_power_title"
+                app:layout_constraintTop_toBottomOf="@+id/car_horse_power_title" />
+
+            <TextView
+                android:id="@+id/car_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@+id/car_horse_power"
+                app:layout_constraintTop_toBottomOf="@+id/car_horse_power" />
+
+            <TextView
+                android:id="@+id/car_cost_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="20dp"
+                android:text="@string/car_cost"
+                app:layout_constraintStart_toStartOf="@+id/car_year_title"
+                app:layout_constraintTop_toBottomOf="@+id/car_year_title" />
+
+            <TextView
+                android:id="@+id/car_cost_for_ride"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/car_year"
+                app:layout_constraintTop_toBottomOf="@+id/car_year" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="2dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/car_details_wrapper" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/interesting_car_buttons_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view1">
+
+            <Button
+                android:id="@+id/go_to_chat_button"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/interesting_car_button"
+                android:text="@string/chat_with_owner"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

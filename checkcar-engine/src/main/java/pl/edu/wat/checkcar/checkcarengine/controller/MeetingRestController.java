@@ -8,6 +8,8 @@ import pl.edu.wat.checkcar.checkcardomain.dto.MeetingDto;
 import pl.edu.wat.checkcar.checkcardomain.rest.MeetingRest;
 import pl.edu.wat.checkcar.checkcarengine.service.MeetingService;
 
+import java.util.List;
+
 /**
  * Created by Aleksander Małkowicz, Date: 25.05.2018
  * Copyright by Wojskowa Akademia Techniczna im. Jarosława Dąbrowskiego, Warszawa 2018
@@ -36,5 +38,15 @@ public class MeetingRestController implements MeetingRest {
     @Override
     public void deleteMeeting(@PathVariable("meetingId") Long meetingId) {
         meetingService.deleteMeeting(meetingId);
+    }
+
+    @Override
+    public List<MeetingDto> getAllMeetingsWithPersonId(@PathVariable("personId") Long personId) {
+        return meetingService.getAllMeeting(personId);
+    }
+
+    @Override
+    public MeetingDto getMeetingByOnwerAndInterested(@PathVariable("carOwnerId") Long carOwnerId, @PathVariable("interestedId") Long interestedId) {
+        return meetingService.getMeetingByOwnerIdAndInterestedId(carOwnerId,interestedId);
     }
 }

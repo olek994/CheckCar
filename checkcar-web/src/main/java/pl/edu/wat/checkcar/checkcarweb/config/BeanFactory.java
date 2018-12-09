@@ -10,6 +10,7 @@ import pl.edu.wat.checkcar.checkcardomain.rest.CarRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.CarTypeRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.InterestingCarRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.MeetingRest;
+import pl.edu.wat.checkcar.checkcardomain.rest.MessageRest;
 import pl.edu.wat.checkcar.checkcardomain.rest.PersonRest;
 
 
@@ -55,6 +56,11 @@ public class BeanFactory {
     @Bean(name = "MeetingRest")
     public SpringRestInvokerProxyFactoryBean meetingRestClient(){
         return getRestInvoker(MeetingRest.class);
+    }
+
+    @Bean(name = "MessageRest")
+    public SpringRestInvokerProxyFactoryBean messageRestClient(){
+        return getRestInvoker(MessageRest.class);
     }
 
     @Bean(name = "InterestingCarRest")

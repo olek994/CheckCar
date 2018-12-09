@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import pl.edu.wat.checkcar.checkcardomain.CarWithModelAndType;
 import pl.edu.wat.checkcar.checkcardomain.dto.CarDto;
 import pl.edu.wat.checkcar.checkcardomain.dto.InterestingCarDto;
 import pl.edu.wat.checkcar.checkcardomain.rest.InterestingCarRest;
@@ -50,5 +51,10 @@ public class InterestingCarRestController implements InterestingCarRest {
     @Override
     public InterestingCarDto getInterestingCarByInteresdIdAndCarId(@PathVariable("interesdId") Long interesdId, @PathVariable("carId") Long carId) {
         return interestingCarService.getInterestingCarByInteredIdAndCarId(interesdId,carId);
+    }
+
+    @Override
+    public List<CarWithModelAndType> getInterestingCarsWithModelAndType(@PathVariable("interestedId") Long interestedId) {
+        return interestingCarService.getInterestingCarsWithModelAndType(interestedId);
     }
 }

@@ -13,4 +13,7 @@ public interface PersonService {
 
     @GET(value = "person/{personId}")
     Call<PersonDto> getPerson(@Path("personId") Long personId);
+
+    @GET(value = "person/userName/{userName}")
+    Call<PersonDto> getPerson(@Path("userName") String personUserName);
 }

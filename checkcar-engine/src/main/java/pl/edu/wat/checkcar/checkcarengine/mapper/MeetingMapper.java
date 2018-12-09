@@ -15,9 +15,6 @@ public class MeetingMapper implements MapperConfig {
     @Override
     public void configure(MapperFactory factory) {
         factory.classMap(Meeting.class, MeetingDto.class)
-                .field("carId.id","carId")
-                .field("ownerId.id","ownerId")
-                .field("interestedId.id","interestedId")
                 .byDefault().register();
     }
 }

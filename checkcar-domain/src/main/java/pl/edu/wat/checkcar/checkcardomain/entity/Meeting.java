@@ -32,20 +32,11 @@ public class Meeting extends BaseEntity {
     @Id
     Long id;
 
-    @JoinColumn(name = "carId")
-    Car carId;
-
-    @JoinColumn(name = "ownerId")
-    Person ownerId;
-
-    @JoinColumn(name = "interestedId")
-    Person interestedId;
+    @Column
+    Long ownerId;
 
     @Column
-    Date meetingDate;
-
-    @Column
-    Double cost;
+    Long interestedId;
 
 
 }

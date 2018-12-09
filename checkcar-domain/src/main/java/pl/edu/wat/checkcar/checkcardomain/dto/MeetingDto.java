@@ -18,21 +18,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MeetingDto extends BaseDto<Long> {
-    private Long carId;
+
     private Long ownerId;
     private Long interestedId;
-    private Date meetingDate;
-    private Double cost;
 
-    @Builder
-    public MeetingDto(Long id, Long carId, Long ownerId, Long interestedId, Date meetingDate, Double cost) {
+    public MeetingDto(Long id, Long ownerId, Long interestedId) {
         super(id);
-        this.carId = carId;
         this.ownerId = ownerId;
         this.interestedId = interestedId;
-        this.meetingDate = meetingDate;
-        this.cost = cost;
     }
-
-
 }
