@@ -106,6 +106,9 @@ public class CarProvider extends BaseCrudProvider<Car,CarDto> {
         if(dto.getCostForRide() != null){
             entity.setCostForRide(dto.getCostForRide());
         }
+        if(dto.getCreatedDate() != null){
+            entity.setCreatedDate(dto.getCreatedDate());
+        }
 
         return entity;
     }

@@ -68,6 +68,9 @@ public class Car extends BaseEntity {
     @Column
     Long costForRide;
 
+    @Column
+    Date createdDate;
+
     @ManyToOne
     @JoinColumn(name = "ownerId")
     Person ownerId;

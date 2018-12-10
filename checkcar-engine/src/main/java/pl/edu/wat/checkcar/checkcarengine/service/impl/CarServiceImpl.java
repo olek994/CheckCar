@@ -7,6 +7,7 @@ import pl.edu.wat.checkcar.checkcardomain.dto.CarDto;
 import pl.edu.wat.checkcar.checkcarengine.provider.CarProvider;
 import pl.edu.wat.checkcar.checkcarengine.service.CarService;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDto createCar(CarDto carDto) {
+        carDto.setCreatedDate(new Date());
         return carProvider.createCar(carDto);
     }
 

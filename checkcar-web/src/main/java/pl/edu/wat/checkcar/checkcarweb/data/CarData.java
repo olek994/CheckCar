@@ -25,4 +25,5 @@ public class CarData {
     private String gearBox;
     private boolean isInInteresting;
     private Long costForRide;
+    private String createdDate;
 }

@@ -32,9 +32,9 @@ public class CarDto extends BaseDto<Long> {
     private GearBoxEnum gearBox;
     private String fuel;
     private Long costForRide;
+    private Date createdDate;
 
-    @Builder
-    public CarDto(Long id, Long carTypeId, Long yearOfProduction, Long course, Long ownerId, Long carModelId, byte[] carImage, String engine, String horsePower, GearBoxEnum gearBox, String fuel, Long costForRide) {
+    public CarDto(Long id, Long carTypeId, Long yearOfProduction, Long course, Long ownerId, Long carModelId, byte[] carImage, String engine, String horsePower, GearBoxEnum gearBox, String fuel, Long costForRide, Date createdDate) {
         super(id);
         this.carTypeId = carTypeId;
         this.yearOfProduction = yearOfProduction;
@@ -47,5 +47,6 @@ public class CarDto extends BaseDto<Long> {
         this.gearBox = gearBox;
         this.fuel = fuel;
         this.costForRide = costForRide;
+        this.createdDate = createdDate;
     }
 }

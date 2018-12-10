@@ -68,24 +68,44 @@
             CheckCarSPA.reloadPage("carDetails/"+carId);
 
         });
-        //TODO WYKRES DODANYCH DZISIAJ SAMOCHODOW
 
-        let data = [
-            {
-                x: ['giraffes', 'orangutans', 'monkeys'],
-                y: [20, 14, 23],
-                type: 'bar'
-            }
-        ];
-        let layout = {
-            title: 'Dzisiaj dodane samochody',
-            titlefont: {
-                size: 36
+        $.ajax({
+            method: 'GET',
+            url: '/car/from/month/',
+            contentType: 'application/json',
+
+            success: function (cars) {
+                let x = [];
+                let y = [];
+
+                $.each(cars,function (idx,itm) {
+                   x.push(itm.model);
+                   y.push(itm.amount);
+                });
+
+                let data = [
+                    {
+                        x: x,
+                        y: y,
+                        type: 'bar'
+                    }
+                ];
+                let layout = {
+                    title: 'Dodane samochody w przeciągu 30 dni',
+                    titlefont: {
+                        size: 36
+                    },
+                    barmode: 'group',
+                    showLegend: false
+                };
+                Plotly.newPlot('carChart', data,layout, {displayModeBar: false});
             },
-            barmode: 'group',
-            showLegend: false
-        };
-        Plotly.newPlot('carChart', data,layout, {displayModeBar: false});
+            error: function () {
+                console.log("error");
+            }
+        });
+
+
     </script>
 </div>
 </body>

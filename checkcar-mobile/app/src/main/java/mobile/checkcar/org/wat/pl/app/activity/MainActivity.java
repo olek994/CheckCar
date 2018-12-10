@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         currentFragment = FragmentUtils.replaceFragment(this, DashboardFragment.class);
 
-        //TODO name zalogowanego na drawerze i sprbowac ogarnac layout
     }
 
     @Override

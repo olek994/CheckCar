@@ -42,39 +42,44 @@ public class LoginActivity extends AppCompatActivity {
         String username = loginName.getText().toString();
         String password = loginPassword.getText().toString();
 
-        new AsyncTask<String,Void,PersonDto>(){
+        if(!username.isEmpty() && !password.isEmpty()){
 
-            @Override
-            protected PersonDto doInBackground(String... strings) {
-                String usernameString = strings[0];
-                PersonService personService = RetrofitUtils.retrofit.create(PersonService.class);
+            new AsyncTask<String,Void,PersonDto>(){
 
-                try {
-                    Response response = personService.getPerson(usernameString).execute();
+                @Override
+                protected PersonDto doInBackground(String... strings) {
+                    String usernameString = strings[0];
+                    PersonService personService = RetrofitUtils.retrofit.create(PersonService.class);
 
-                    if(response.body() != null){
-                        return (PersonDto) response.body();
+                    try {
+                        Response response = personService.getPerson(usernameString).execute();
+
+                        if(response.body() != null){
+                            return (PersonDto) response.body();
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    return null;
                 }
 
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(PersonDto personDto) {
-                super.onPostExecute(personDto);
-                if(personDto != null){
-                    PersonUtils.setLoggedPerson(personDto);
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(LoginActivity.this, "Coś poszło nie tak. Spróbuj jeszcze raz później", Toast.LENGTH_SHORT).show();
+                @Override
+                protected void onPostExecute(PersonDto personDto) {
+                    super.onPostExecute(personDto);
+                    if(personDto != null){
+                        
+                        PersonUtils.setLoggedPerson(personDto);
+                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(LoginActivity.this, "Coś poszło nie tak. Spróbuj jeszcze raz później", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        }.execute(username);
+            }.execute(username);
+        }
+
 
 
     }

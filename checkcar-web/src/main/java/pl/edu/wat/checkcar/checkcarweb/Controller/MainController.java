@@ -24,12 +24,19 @@ import pl.edu.wat.checkcar.checkcardomain.rest.PersonRest;
 import pl.edu.wat.checkcar.checkcarweb.BaseController;
 import pl.edu.wat.checkcar.checkcarweb.data.AddCarData;
 import pl.edu.wat.checkcar.checkcarweb.data.CarData;
+import pl.edu.wat.checkcar.checkcarweb.data.CarForChart;
 import pl.edu.wat.checkcar.checkcarweb.data.addInterestingCarData;
 import pl.edu.wat.checkcar.checkcarweb.utils.EnumUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Aleksander Małkowicz, Date: 03.09.2018
@@ -103,6 +110,7 @@ public class MainController extends BaseController {
             carData.setId(car.getId());
             newCars.add(carData);
         }
+
         model.addAttribute("cars", newCars);
         model.addAttribute("user", getLoggedInPerson());
 
@@ -110,6 +118,41 @@ public class MainController extends BaseController {
         return getTemplatePath("dashboard", part);
     }
 
+    @RequestMapping(value = "/car/from/month/")
+    @ResponseBody
+    public List<CarForChart> getCarFrom30DaysAgo(){
+        List<CarDto> cars = carRest.getAllCars();
+        List<CarData> carFrom30Days = new ArrayList<>();
+        Date today = new Date();
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(today);
+        cal.add(Calendar.DAY_OF_MONTH, -30);
+        Date today30 = cal.getTime();
+        Map<String,Long> carsAmount = new HashMap<>();
+        List<CarForChart> carsForChart = new ArrayList<>();
+        if(cars == null){
+            return Collections.EMPTY_LIST;
+        }
+
+        for(CarDto car: cars){
+            if(car.getCreatedDate().after(today30)){
+                CarModelDto carModelDto = carModelRest.getCarModel(car.getCarModelId());
+                if(carsAmount.get(carModelDto.getModel()) != null) {
+                    carsAmount.put(carModelDto.getModel(),carsAmount.get(carModelDto.getModel())+1);
+                }else{
+                    carsAmount.put(carModelDto.getModel(),1L);
+                }
+            }
+        }
+        for(String key: carsAmount.keySet()){
+            CarForChart carForChart = new CarForChart();
+            carForChart.setModel(key);
+            carForChart.setAmount(carsAmount.get(key));
+            carsForChart.add(carForChart);
+        }
+
+        return carsForChart;
+    }
 
     @RequestMapping(value = "/carSearch", method = RequestMethod.GET)
     public String getCarSearchView(Model model, @RequestParam(name = "part", required = false, defaultValue = "false") String part) {
