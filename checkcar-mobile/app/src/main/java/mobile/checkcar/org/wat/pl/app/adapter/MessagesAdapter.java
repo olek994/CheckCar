@@ -38,9 +38,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView;
         if(viewType == 1){
-            itemView = inflater.inflate(R.layout.my_message_row,null);
+            itemView = inflater.inflate(R.layout.my_message_row, parent, false);
         }else{
-            itemView = inflater.inflate(R.layout.other_message_row,null);
+            itemView = inflater.inflate(R.layout.other_message_row, parent, false);
         }
         return new MessagesViewHolder(itemView);
     }

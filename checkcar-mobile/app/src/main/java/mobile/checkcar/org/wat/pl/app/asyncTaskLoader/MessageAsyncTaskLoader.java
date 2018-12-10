@@ -31,7 +31,6 @@ public class MessageAsyncTaskLoader extends AsyncTaskLoader<List<MessageDto>> {
         MessageService messageService = RetrofitUtils.retrofit.create(MessageService.class);
         try {
             Response response = messageService.getMessagesOfMeeting(meetingId).execute();
-            Log.e("RESPONSE",response.body()+"");
             if(response.body() != null){
                 return (List<MessageDto>) response.body();
             }

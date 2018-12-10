@@ -47,8 +47,7 @@ public class DashboardFragment extends BaseFragment implements LoaderManager.Loa
         View itemView = inflater.inflate(R.layout.fragment_dashboard, null);
         ButterKnife.bind(this,itemView);
 
-        meetingsRecyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         meetingsRecyclerView.setLayoutManager(layoutManager);
 
         meetingsAdapter =  new MeetingsAdapter();
