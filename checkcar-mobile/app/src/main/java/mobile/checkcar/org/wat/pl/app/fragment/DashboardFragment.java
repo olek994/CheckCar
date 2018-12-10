@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -30,6 +31,9 @@ public class DashboardFragment extends BaseFragment implements LoaderManager.Loa
     @BindView(R.id.meetings_recycler_view)
     RecyclerView meetingsRecyclerView;
 
+    @BindView(R.id.meetings_swipe_to_refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private MeetingsAdapter meetingsAdapter;
     @Override
     public int getTitleStringId() {
@@ -52,13 +56,20 @@ public class DashboardFragment extends BaseFragment implements LoaderManager.Loa
 
         meetingsAdapter =  new MeetingsAdapter();
         meetingsRecyclerView.setAdapter(meetingsAdapter);
-
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                loadMeetings();
+            }
+        });
         return itemView;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        swipeRefreshLayout.setRefreshing(true);
         loadMeetings();
     }
 
@@ -74,6 +85,7 @@ public class DashboardFragment extends BaseFragment implements LoaderManager.Loa
             return;
         }
         meetingsAdapter.add(data);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

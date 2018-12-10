@@ -79,7 +79,7 @@
                             if(cars.length === 0){
                                 $(".no-cars-search").show('fast');
                             }
-
+                            $("#found-cars-wrapper").empty();
                             $.each(cars, function (idx, itm) {
                                $("#found-cars-wrapper").append(
                                    "        <div class=\"col-12\">\n" +

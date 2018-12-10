@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -30,6 +31,9 @@ public class InterestingCarsFragment extends BaseFragment implements LoaderManag
     @BindView(R.id.interesting_cars_recycler_view)
     RecyclerView recyclerView;
 
+    @BindView(R.id.interesting_car_swipe_to_refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private InterestingCarsAdapter interestingCarsAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,14 @@ public class InterestingCarsFragment extends BaseFragment implements LoaderManag
         interestingCarsAdapter = new InterestingCarsAdapter();
         recyclerView.setAdapter(interestingCarsAdapter);
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                loadInterestingCars();
+            }
+        });
+
         return view;
     }
 
@@ -62,7 +74,7 @@ public class InterestingCarsFragment extends BaseFragment implements LoaderManag
     public void onStart() {
         super.onStart();
         getActivity().setTitle(R.string.interesting_cars);
-
+        swipeRefreshLayout.setRefreshing(true);
         loadInterestingCars();
     }
 
@@ -77,6 +89,7 @@ public class InterestingCarsFragment extends BaseFragment implements LoaderManag
             return;
         }
         interestingCarsAdapter.addCars(data);
+        swipeRefreshLayout.setRefreshing(false);
 
     }
 

@@ -25,9 +25,9 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesViewHolder> {
     public int getItemViewType(int position) {
         MessageDto messageDto = messages.get(position);
 
-        if(messageDto.getAuthorId().equals(PersonUtils.getLoggedPerson().getId())){
+        if (messageDto.getAuthorId().equals(PersonUtils.getLoggedPerson().getId())) {
             return 1;
-        }else{
+        } else {
             return 2;
         }
     }
@@ -37,14 +37,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesViewHolder> {
     public MessagesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView;
-        if(viewType == 1){
+        if (viewType == 1) {
             itemView = inflater.inflate(R.layout.my_message_row, parent, false);
-        }else{
+        } else {
             itemView = inflater.inflate(R.layout.other_message_row, parent, false);
         }
         return new MessagesViewHolder(itemView);
     }
-
 
 
     @Override
@@ -53,12 +52,18 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesViewHolder> {
         holder.bindData(messageDto);
     }
 
-    public void add(MessageDto messageDto){
+    public void add(MessageDto messageDto) {
+        if (messageDto == null) {
+            return;
+        }
         messages.add(messageDto);
         notifyDataSetChanged();
     }
 
-    public void add(List<MessageDto> messageList){
+    public void add(List<MessageDto> messageList) {
+        if (messageList == null) {
+            return;
+        }
         messages.clear();
         messages.addAll(messageList);
         notifyDataSetChanged();

@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 protected void onPostExecute(PersonDto personDto) {
                     super.onPostExecute(personDto);
                     if(personDto != null){
-                        
+
                         PersonUtils.setLoggedPerson(personDto);
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);

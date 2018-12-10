@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -47,6 +48,9 @@ public class ChatFragment extends BaseFragment implements LoaderManager.LoaderCa
     @BindView(R.id.messages_recycler_view)
     RecyclerView messagesRecyclerView;
 
+    @BindView(R.id.chat_swipe_to_refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private Long ownerId;
     private Long personId;
     private Long meetingId;
@@ -74,6 +78,13 @@ public class ChatFragment extends BaseFragment implements LoaderManager.LoaderCa
         messagesAdapter = new MessagesAdapter();
         messagesRecyclerView.setAdapter(messagesAdapter);
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                loadMessages();
+            }
+        });
 
         return itemView;
     }
@@ -156,6 +167,7 @@ public class ChatFragment extends BaseFragment implements LoaderManager.LoaderCa
             protected void onPostExecute(MeetingDto meetingDto) {
                 super.onPostExecute(meetingDto);
                 meetingId = meetingDto.getId();
+                swipeRefreshLayout.setRefreshing(true);
                 loadMessages();
                 setRepeatingAsyncTask();
             }
@@ -174,6 +186,7 @@ public class ChatFragment extends BaseFragment implements LoaderManager.LoaderCa
             return;
         }
         messagesAdapter.add(data);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
